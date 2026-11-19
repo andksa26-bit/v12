@@ -1,0 +1,10 @@
+{
+  "name": "إدارة الحلال – أبو حاتم",
+  "short_name": "حلال أبو حاتم",
+  "lang": "ar",
+  "dir": "rtl",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f5ef",
+  "theme_color": "#174b3a"
+}

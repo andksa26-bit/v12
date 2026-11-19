@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#174b3a"><meta name="description" content="إدارة الحلال - أبو حاتم">
+<title>إدارة الحلال – أبو حاتم</title>
+<link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--green:#174b3a;--green2:#21634b;--gold:#c49a45;--bg:#f4f5ef;--ink:#1f2937;--muted:#667085;--line:#e5e7eb;--red:#b42318}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:86px}
+header{background:var(--green);color:#fff;padding:17px 16px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
+header .top{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
+h1{font-size:19px;margin:0}header small{color:#e8d6a8}
+main{max-width:900px;margin:15px auto;padding:0 12px}
+nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
+nav button,.btn{border:0;border-radius:12px;padding:12px 8px;font-weight:bold;font-size:13px;cursor:pointer}
+nav button{background:#fff;color:var(--green);border:1px solid var(--line)}
+nav button.active,.btn.primary{background:var(--green);color:white}
+.btn{background:#edf2ee;color:var(--green);width:100%}.btn.danger{background:#fff0ef;color:var(--red)}
+.panel{display:none}.panel.active{display:block}
+.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:12px;box-shadow:0 2px 7px #182b1a08}
+h2{font-size:16px;margin:0 0 12px;color:var(--green)}h3{font-size:14px;margin:0 0 10px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.kpi{background:#f8faf8;border:1px solid var(--line);padding:12px;border-radius:12px;text-align:center}
+.kpi b{display:block;font-size:23px;color:var(--green);margin-top:4px}.kpi span,.muted{font-size:12px;color:var(--muted)}
+label{display:block;font-size:12px;font-weight:bold;margin:9px 0 5px}
+input,select,textarea{width:100%;border:1px solid #d0d5dd;border-radius:9px;padding:11px;background:#fff;font:inherit;font-size:14px;color:var(--ink)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+table{width:100%;border-collapse:collapse;font-size:12px;min-width:500px}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:center}th{background:#edf3ee;color:var(--green)}
+.tablewrap{overflow:auto}
+.actions{display:flex;gap:7px;flex-wrap:wrap}.actions .btn{width:auto;flex:1}
+.total{background:#f7f0df;border:1px solid #ead8aa;border-radius:11px;padding:12px;text-align:center;font-weight:bold;color:#775516;margin:10px 0}
+.note{font-size:12px;line-height:1.8;background:#edf4ef;border-right:4px solid var(--green2);padding:10px;border-radius:9px;margin-bottom:12px}
+.badge{display:inline-block;padding:3px 7px;border-radius:20px;background:#e9f5ed;color:#17633b;font-weight:bold}
+.empty{text-align:center;color:var(--muted);padding:18px;font-size:13px}
+footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px;z-index:6}
+footer button{border:0;background:#edf2ee;color:var(--green);border-radius:9px;padding:9px 12px;font-weight:bold}
+@media(min-width:650px){nav{grid-template-columns:repeat(6,1fr)}.grid.kpis{grid-template-columns:repeat(4,1fr)}}
+</style></head>
+<body>
+<header><div class="top"><div><h1>🐑 إدارة الحلال – أبو حاتم</h1><small>إدارة مبسطة للقطيع والمصاريف</small></div><span>v1 تجريبي</span></div></header>
+<main>
+<nav id="nav">
+<button class="active" data-tab="home">الرئيسية</button><button data-tab="counts">التعداد</button><button data-tab="sales">المبيعات</button><button data-tab="feed">الأعلاف</button><button data-tab="health">العلاجات</button><button data-tab="reports">التقارير</button>
+</nav>
+<section id="home" class="panel active">
+<div class="note">تطبيق يعمل دون إنترنت بعد حفظه على الجهاز. ابدأ بتثبيت أعداد قطيعك الفعلية من قسم التعداد.</div>
+<div class="grid kpis" id="homeKpis"></div>
+<div class="card"><h2>ملخص السنة الحالية</h2><div class="grid" id="yearKpis"></div></div>
+<div class="card"><h2>الوصول السريع</h2><div class="grid">
+<button class="btn primary" onclick="tab('counts')">إدارة التعداد</button><button class="btn" onclick="tab('feed')">تسجيل الأعلاف</button>
+<button class="btn" onclick="tab('sales')">تسجيل بيع</button><button class="btn" onclick="tab('reports')">التقارير السنوية</button></div></div>
+</section>
+<section id="counts" class="panel">
+<div class="note">التعداد مفصول حسب النوع والعمر والجنس. الولادة تزيد عدد الصغار تلقائياً، والبيع والنفوق والناكس تخصم من الفئة التي تحددها.</div>
+<div class="grid kpis" id="countKpis"></div>
+<div class="card"><h2>تفاصيل التعداد الحالي</h2><div class="tablewrap"><table><thead><tr><th>النوع</th><th>العمر</th><th>إناث</th><th>ذكور</th><th>المجموع</th></tr></thead><tbody id="countTable"></tbody></table></div></div>
+<div class="card"><h2>تعديل العدد الأساسي</h2><div class="row"><div><label>نوع الحلال</label><select id="baseAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>الفئة العمرية</label><select id="baseAge"><option value="adult">كبار</option><option value="young">صغار / بهام</option></select></div><div><label>عدد الإناث</label><input id="baseF" type="number" min="0" value="0"></div><div><label>عدد الذكور</label><input id="baseM" type="number" min="0" value="0"></div></div><button class="btn primary" style="margin-top:12px" onclick="setBase()">حفظ التعداد الأساسي</button></div>
+<div class="card"><h2>تسجيل حركة (ولادة / نفوق / ناكس / إضافة)</h2><div class="row"><div><label>التاريخ</label><input id="eventDate" type="date"></div><div><label>وقت الحدث</label><input id="eventTime" type="time"></div><div><label>نوع الحركة</label><select id="eventType"><option value="ولادة">ولادة جديدة (+)</option><option value="إضافة">إضافة للقطيع (+)</option><option value="نفوق">نفوق (-)</option><option value="ناكس">ناكس (-)</option></select></div><div><label>نوع الحلال</label><select id="eventAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>العمر</label><select id="eventAge"><option value="young">صغير / بهام</option><option value="adult">كبير</option></select></div><div><label>الجنس</label><select id="eventGender"><option value="f">أنثى</option><option value="m">ذكر</option></select></div><div><label>العدد</label><input id="eventCount" type="number" min="1" value="1"></div><div><label>ملاحظات</label><input id="eventNotes" placeholder="اختياري"></div></div><button class="btn primary" style="margin-top:12px" onclick="addEvent()">تسجيل الحركة وتحديث التعداد</button></div>
+<div class="card"><h2>سجل الحركات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ والوقت</th><th>الحركة</th><th>التفاصيل</th><th>العدد</th><th>حذف وعكس</th></tr></thead><tbody id="eventTable"></tbody></table></div></div>
+</section>
+<section id="sales" class="panel">
+<div class="card"><h2>تسجيل عملية بيع</h2><div class="row"><div><label>التاريخ</label><input id="saleDate" type="date"></div><div><label>نوع الحلال</label><select id="saleAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>العمر</label><select id="saleAge"><option value="adult">كبير</option><option value="young">صغير / بهام</option></select></div><div><label>الجنس</label><select id="saleGender"><option value="m">ذكر</option><option value="f">أنثى</option></select></div><div><label>العدد المباع</label><input id="saleQty" type="number" min="1" value="1"></div><div><label>سعر الرأس (ريال)</label><input id="salePrice" type="number" min="0" step=".01" value="0"></div></div><div class="total" id="saleTotal">الإجمالي: 0 ريال</div><button class="btn primary" onclick="addSale()">تسجيل البيع وخصم العدد</button></div>
+<div class="card"><h2>سجل المبيعات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>التفاصيل</th><th>العدد</th><th>الإيراد</th><th>حذف وعكس</th></tr></thead><tbody id="salesTable"></tbody></table></div></div>
+</section>
+<section id="feed" class="panel">
+<div class="card"><h2>تسجيل فاتورة أعلاف ومياه</h2><div class="row"><div><label>تاريخ الفاتورة</label><input id="feedDate" type="date"></div><div><label>الصنف</label><select id="feedItem"><option>شعير</option><option>مركز / وافي</option><option>برسيم</option><option>بروتين</option><option>ماء</option><option>أخرى</option></select></div><div><label>الكمية</label><input id="feedQty" type="number" min=".01" step=".01" value="1"></div><div><label>سعر الوحدة (ريال)</label><input id="feedPrice" type="number" min="0" step=".01" value="0"></div></div><div class="total" id="feedTotal">إجمالي الفاتورة: 0 ريال</div><button class="btn primary" onclick="addFeed()">حفظ الفاتورة</button></div>
+<div class="card"><h2>تقرير دورة الأعلاف (من 27 إلى 26)</h2><label>شهر التقرير</label><input id="feedMonth" type="month"><div class="total" id="feedMonthTotal">0 ريال</div><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>الصنف</th><th>الكمية</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="feedTable"></tbody></table></div></div>
+</section>
+<section id="health" class="panel">
+<div class="card"><h2>تسجيل علاج أو تحصين</h2><div class="row"><div><label>التاريخ</label><input id="healthDate" type="date"></div><div><label>التصنيف</label><select id="healthCat"><option>فيتامينات</option><option>مضاد حيوي</option><option>تحصين</option><option>طفيليات وديدان</option><option>أخرى</option></select></div><div><label>اسم العلاج</label><input id="healthName"></div><div><label>الفئة المستهدفة</label><input id="healthTarget" placeholder="مثال: صغار الغنم"></div><div><label>التكلفة (ريال)</label><input id="healthCost" type="number" min="0" value="0"></div></div><button class="btn primary" style="margin-top:12px" onclick="addHealth()">حفظ السجل الطبي</button></div>
+<div class="card"><h2>سجل العلاجات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>العلاج</th><th>الفئة</th><th>التكلفة</th><th>حذف</th></tr></thead><tbody id="healthTable"></tbody></table></div></div>
+</section>
+<section id="reports" class="panel">
+<div class="card"><h2>التقرير المالي السنوي</h2><label>السنة</label><input id="reportYear" type="number" min="2000" max="2100"><div class="grid kpis" id="reportKpis"></div><p class="muted">صافي التشغيل = إيرادات البيع − الأعلاف والماء − العلاجات. لا يشمل تكلفة شراء المواشي أو العمالة أو المصاريف التي لم تسجلها.</p></div>
+<div class="card"><h2>النسخ الاحتياطي</h2><p class="muted">احفظ نسخة من بياناتك في ملف، واستعدها عند تغيير الجوال أو المتصفح.</p><div class="actions"><button class="btn primary" onclick="backup()">تنزيل نسخة احتياطية</button><button class="btn" onclick="document.getElementById('restoreFile').click()">استعادة نسخة</button><input id="restoreFile" type="file" accept="application/json" hidden onchange="restore(event)"></div></div>
+<div class="card"><h2>سجل المصروفات والإيرادات</h2><div class="tablewrap"><table><thead><tr><th>البند</th><th>المبلغ</th></tr></thead><tbody id="summaryTable"></tbody></table></div></div>
+</section>
+</main>
+<footer><button onclick="tab('home')">الرئيسية</button><button onclick="tab('counts')">التعداد</button><button onclick="tab('feed')">الأعلاف</button><button onclick="tab('reports')">التقارير</button></footer>
+<script>
+const KEY='abu_hatem_offline_v1';
+const initial={counts:{sheep:{adult:{f:40,m:3},young:{f:9,m:8}},goat:{adult:{f:12,m:2},young:{f:4,m:2}}},events:[],sales:[],feeds:[],health:[]};
+let db=load();function load(){try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(initial)}catch{return structuredClone(initial)}}
+function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
+const $=id=>document.getElementById(id), today=()=>new Date().toLocaleDateString('en-CA');
+function setDates(){['eventDate','saleDate','feedDate','healthDate'].forEach(x=>$(x).value=today());$('feedMonth').value=today().slice(0,7);$('reportYear').value=new Date().getFullYear()}
+function tab(id){document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));render()}
+$('nav').addEventListener('click',e=>{let b=e.target.closest('button[data-tab]');if(b)tab(b.dataset.tab)});
+function sumAnimal(a){let c=db.counts[a];return c.adult.f+c.adult.m+c.young.f+c.young.m}
+function sumAge(age){return ['sheep','goat'].reduce((n,a)=>n+db.counts[a][age].f+db.counts[a][age].m,0)}
+function totalHeads(){return sumAnimal('sheep')+sumAnimal('goat')}
+function money(n){return (Number(n)||0).toLocaleString('ar-SA',{minimumFractionDigits:2,maximumFractionDigits:2})+' ر.س'}
+function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function labelAnimal(a){return a==='sheep'?'غنم':'ماعز'}function labelAge(a){return a==='adult'?'كبار':'صغار'}function labelGender(g){return g==='f'?'إناث':'ذكور'}
+function setBase(){let a=$('baseAnimal').value,age=$('baseAge').value,f=+$('baseF').value,m=+$('baseM').value;if(f<0||m<0||!Number.isInteger(f)||!Number.isInteger(m))return alert('أدخل أعداداً صحيحة غير سالبة');db.counts[a][age]={f,m};save();alert('تم حفظ التعداد الأساسي')}
+function addEvent(){let e={id:Date.now(),date:$('eventDate').value,time:$('eventTime').value,type:$('eventType').value,animal:$('eventAnimal').value,age:$('eventAge').value,gender:$('eventGender').value,count:+$('eventCount').value,notes:$('eventNotes').value};if(!e.date||!Number.isInteger(e.count)||e.count<1)return alert('تحقق من التاريخ والعدد');let sign=['ولادة','إضافة'].includes(e.type)?1:-1;if(sign<0&&db.counts[e.animal][e.age][e.gender]<e.count)return alert('العدد أكبر من الموجود في هذه الفئة');db.counts[e.animal][e.age][e.gender]+=sign*e.count;db.events.unshift(e);save();$('eventNotes').value='';alert('تم تحديث التعداد')}
+function reverseEvent(e){let sign=['ولادة','إضافة'].includes(e.type)?-1:1;db.counts[e.animal][e.age][e.gender]=Math.max(0,db.counts[e.animal][e.age][e.gender]+sign*e.count)}
+function removeEvent(id){let e=db.events.find(x=>x.id===id);if(e&&confirm('حذف الحركة وعكس أثرها على التعداد؟')){reverseEvent(e);db.events=db.events.filter(x=>x.id!==id);save()}}
+function addSale(){let s={id:Date.now(),date:$('saleDate').value,animal:$('saleAnimal').value,age:$('saleAge').value,gender:$('saleGender').value,count:+$('saleQty').value,price:+$('salePrice').value};if(!s.date||!Number.isInteger(s.count)||s.count<1||s.price<=0)return alert('أدخل التاريخ والعدد والسعر بشكل صحيح');if(db.counts[s.animal][s.age][s.gender]<s.count)return alert('العدد المباع أكبر من المتاح');db.counts[s.animal][s.age][s.gender]-=s.count;s.total=s.count*s.price;db.sales.unshift(s);save();alert('تم تسجيل البيع وخصم العدد')}
+function removeSale(id){let s=db.sales.find(x=>x.id===id);if(s&&confirm('حذف البيع وإعادة الرؤوس للتعداد؟')){db.counts[s.animal][s.age][s.gender]+=s.count;db.sales=db.sales.filter(x=>x.id!==id);save()}}
+function addFeed(){let f={id:Date.now(),date:$('feedDate').value,item:$('feedItem').value,qty:+$('feedQty').value,price:+$('feedPrice').value};if(!f.date||f.qty<=0||f.price<0)return alert('تحقق من التاريخ والكمية والسعر');f.total=f.qty*f.price;db.feeds.unshift(f);save();alert('تم حفظ الفاتورة')}
+function removeFeed(id){if(confirm('حذف الفاتورة؟')){db.feeds=db.feeds.filter(x=>x.id!==id);save()}}
+function addHealth(){let h={id:Date.now(),date:$('healthDate').value,cat:$('healthCat').value,name:$('healthName').value.trim(),target:$('healthTarget').value,cost:+$('healthCost').value};if(!h.date||!h.name||h.cost<0)return alert('أدخل التاريخ واسم العلاج وتكلفة صحيحة');db.health.unshift(h);save();$('healthName').value='';alert('تم حفظ السجل الطبي')}
+function removeHealth(id){if(confirm('حذف السجل؟')){db.health=db.health.filter(x=>x.id!==id);save()}}
+function cycleMatch(date,month){if(!month)return true;let [y,m]=month.split('-').map(Number);let start=new Date(y,m-2,27),end=new Date(y,m-1,26,23,59,59);let d=new Date(date+'T12:00:00');return d>=start&&d<=end}
+function render(){let sheep=sumAnimal('sheep'),goat=sumAnimal('goat'),ad=sumAge('adult'),yo=sumAge('young');
+$('homeKpis').innerHTML=[['إجمالي الرؤوس',totalHeads()],['الغنم',sheep],['الماعز',goat],['الكبار / الصغار',ad+' / '+yo]].map(x=>`<div class="kpi"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+$('countKpis').innerHTML=[['إجمالي الغنم',sheep],['إجمالي الماعز',goat],['الكبار',ad],['الصغار / البهام',yo]].map(x=>`<div class="kpi"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
+$('countTable').innerHTML=['sheep','goat'].map(a=>['adult','young'].map(age=>{let c=db.counts[a][age];return `<tr><td>${labelAnimal(a)}</td><td>${labelAge(age)}</td><td>${c.f}</td><td>${c.m}</td><td><b>${c.f+c.m}</b></td></tr>`}).join('')).join('');
+$('eventTable').innerHTML=db.events.map(e=>`<tr><td>${safe(e.date)} ${safe(e.time)}</td><td>${safe(e.type)}</td><td>${labelAnimal(e.animal)} – ${labelAge(e.age)} – ${labelGender(e.gender)}</td><td>${e.count}</td><td><button class="btn danger" onclick="removeEvent(${e.id})">حذف وعكس</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد حركات مسجلة</td></tr>';
+$('salesTable').innerHTML=db.sales.map(s=>`<tr><td>${safe(s.date)}</td><td>${labelAnimal(s.animal)} – ${labelAge(s.age)} – ${labelGender(s.gender)}</td><td>${s.count}</td><td>${money(s.total)}</td><td><button class="btn danger" onclick="removeSale(${s.id})">حذف وعكس</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد مبيعات</td></tr>';
+let fm=$('feedMonth').value,cycle=db.feeds.filter(f=>cycleMatch(f.date,fm));$('feedMonthTotal').textContent='إجمالي الدورة: '+money(cycle.reduce((n,f)=>n+f.total,0));
+$('feedTable').innerHTML=db.feeds.map(f=>`<tr><td>${safe(f.date)}</td><td>${safe(f.item)}</td><td>${f.qty}</td><td>${money(f.total)}</td><td><button class="btn danger" onclick="removeFeed(${f.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد فواتير</td></tr>';
+$('healthTable').innerHTML=db.health.map(h=>`<tr><td>${safe(h.date)}</td><td>${safe(h.cat)} – ${safe(h.name)}</td><td>${safe(h.target)}</td><td>${money(h.cost)}</td><td><button class="btn danger" onclick="removeHealth(${h.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد علاجات</td></tr>';
+let year=String($('reportYear').value||new Date().getFullYear()),sales=db.sales.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.total,0),feeds=db.feeds.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.total,0),health=db.health.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.cost,0),sold=db.sales.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.count,0),net=sales-feeds-health;
+$('yearKpis').innerHTML=[['مبيعات السنة',money(sales)],['مصروف الأعلاف',money(feeds)],['العلاجات',money(health)],['صافي التشغيل',money(net)]].map(x=>`<div class="kpi"><span>${x[0]}</span><b style="font-size:16px">${x[1]}</b></div>`).join('');
+$('reportKpis').innerHTML=[['عدد الرؤوس المباعة',sold+' رأس'],['إيرادات البيع',money(sales)],['الأعلاف والماء',money(feeds)],['العلاجات',money(health)],['صافي التشغيل',money(net)]].map(x=>`<div class="kpi"><span>${x[0]}</span><b style="font-size:16px">${x[1]}</b></div>`).join('');
+$('summaryTable').innerHTML=`<tr><td>إيرادات البيع</td><td>${money(sales)}</td></tr><tr><td>الأعلاف والماء</td><td>${money(feeds)}</td></tr><tr><td>العلاجات</td><td>${money(health)}</td></tr><tr><td><b>صافي التشغيل</b></td><td><b>${money(net)}</b></td></tr>`;
+let qty=+$('saleQty').value||0,price=+$('salePrice').value||0;$('saleTotal').textContent='إجمالي البيع: '+money(qty*price);
+let fq=+$('feedQty').value||0,fp=+$('feedPrice').value||0;$('feedTotal').textContent='إجمالي الفاتورة: '+money(fq*fp);
+}
+['saleQty','salePrice','feedQty','feedPrice','feedMonth','reportYear'].forEach(id=>$(id).addEventListener('input',render));
+function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='نسخة-احتياطية-إدارة-الحلال.json';a.click();URL.revokeObjectURL(a.href)}
+function restore(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.counts||!Array.isArray(d.sales)||!Array.isArray(d.events))throw 0;if(confirm('استبدال البيانات الحالية بالنسخة المختارة؟')){db=d;save();alert('تمت الاستعادة')}}catch{alert('ملف النسخة غير صالح')}};r.readAsText(f)}
+setDates();render();
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
