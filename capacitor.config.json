@@ -1,0 +1,7 @@
+{
+  "appId": "com.abuhatim.halal",
+  "appName": "أبو حاتم",
+  "webDir": "www",
+  "backgroundColor": "#173f2d",
+  "android": { "allowMixedContent": false }
+}

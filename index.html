@@ -1,128 +1,422 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#174b3a"><meta name="description" content="إدارة الحلال - أبو حاتم">
-<title>إدارة الحلال – أبو حاتم</title>
-<link rel="manifest" href="manifest.webmanifest">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#244b35"><title>أبو حاتم v12 | إدارة الحلال</title>
 <style>
-:root{--green:#174b3a;--green2:#21634b;--gold:#c49a45;--bg:#f4f5ef;--ink:#1f2937;--muted:#667085;--line:#e5e7eb;--red:#b42318}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,Arial,sans-serif;padding-bottom:86px}
-header{background:var(--green);color:#fff;padding:17px 16px;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0002}
-header .top{max-width:900px;margin:auto;display:flex;justify-content:space-between;align-items:center;gap:12px}
-h1{font-size:19px;margin:0}header small{color:#e8d6a8}
-main{max-width:900px;margin:15px auto;padding:0 12px}
-nav{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px}
-nav button,.btn{border:0;border-radius:12px;padding:12px 8px;font-weight:bold;font-size:13px;cursor:pointer}
-nav button{background:#fff;color:var(--green);border:1px solid var(--line)}
-nav button.active,.btn.primary{background:var(--green);color:white}
-.btn{background:#edf2ee;color:var(--green);width:100%}.btn.danger{background:#fff0ef;color:var(--red)}
-.panel{display:none}.panel.active{display:block}
-.card{background:#fff;border:1px solid var(--line);border-radius:15px;padding:14px;margin-bottom:12px;box-shadow:0 2px 7px #182b1a08}
-h2{font-size:16px;margin:0 0 12px;color:var(--green)}h3{font-size:14px;margin:0 0 10px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-.kpi{background:#f8faf8;border:1px solid var(--line);padding:12px;border-radius:12px;text-align:center}
-.kpi b{display:block;font-size:23px;color:var(--green);margin-top:4px}.kpi span,.muted{font-size:12px;color:var(--muted)}
-label{display:block;font-size:12px;font-weight:bold;margin:9px 0 5px}
-input,select,textarea{width:100%;border:1px solid #d0d5dd;border-radius:9px;padding:11px;background:#fff;font:inherit;font-size:14px;color:var(--ink)}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
-table{width:100%;border-collapse:collapse;font-size:12px;min-width:500px}th,td{padding:9px 7px;border-bottom:1px solid var(--line);text-align:center}th{background:#edf3ee;color:var(--green)}
-.tablewrap{overflow:auto}
-.actions{display:flex;gap:7px;flex-wrap:wrap}.actions .btn{width:auto;flex:1}
-.total{background:#f7f0df;border:1px solid #ead8aa;border-radius:11px;padding:12px;text-align:center;font-weight:bold;color:#775516;margin:10px 0}
-.note{font-size:12px;line-height:1.8;background:#edf4ef;border-right:4px solid var(--green2);padding:10px;border-radius:9px;margin-bottom:12px}
-.badge{display:inline-block;padding:3px 7px;border-radius:20px;background:#e9f5ed;color:#17633b;font-weight:bold}
-.empty{text-align:center;color:var(--muted);padding:18px;font-size:13px}
-footer{position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--line);padding:9px 12px calc(9px + env(safe-area-inset-bottom));display:flex;justify-content:center;gap:8px;z-index:6}
-footer button{border:0;background:#edf2ee;color:var(--green);border-radius:9px;padding:9px 12px;font-weight:bold}
-@media(min-width:650px){nav{grid-template-columns:repeat(6,1fr)}.grid.kpis{grid-template-columns:repeat(4,1fr)}}
+:root{--green:#244b35;--green2:#356b49;--gold:#d7a866;--bg:#f3f5f1;--card:#fff;--ink:#243229;--muted:#718076;--line:#e2e8e2;--red:#b94a48}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:Tahoma,"Segoe UI",sans-serif}
+header{background:linear-gradient(120deg,var(--green),#477c54);color:#fff;padding:22px 16px 18px}header h1{margin:0;font-size:23px}header p{margin:7px 0 0;color:#e4eee5;font-size:13px}
+main{max-width:1100px;margin:auto;padding:15px}.nav{display:flex;gap:8px;overflow:auto;padding:10px 0 14px}.nav button{white-space:nowrap;border:0;border-radius:11px;padding:11px 15px;background:#e2e9e1;color:var(--green);font-weight:bold}.nav button.active{background:var(--green);color:white}
+.page{display:none}.page.active{display:block}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;margin-bottom:14px}.card,.panel{background:var(--card);border:1px solid var(--line);border-radius:15px;padding:15px;box-shadow:0 3px 12px #17351d0a}.card small{color:var(--muted)}.num{font-size:26px;font-weight:bold;color:var(--green);margin-top:7px}.panel{margin-bottom:14px}.panel h2{font-size:17px;margin:0 0 13px;color:var(--green)}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px;align-items:end}.field{display:flex;flex-direction:column;gap:5px}label{font-size:12px;font-weight:bold;color:#536258}input,select,textarea{width:100%;padding:11px;border:1px solid #d6dfd6;border-radius:9px;background:#fff;font:inherit;font-size:14px;color:var(--ink)}button{cursor:pointer;font:inherit}.primary,.secondary,.danger{border:0;border-radius:9px;padding:11px 14px;font-weight:bold}.primary{background:var(--green);color:white}.secondary{background:#e9efe8;color:var(--green)}.danger{background:#fae9e8;color:var(--red)}.toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;min-width:650px;font-size:13px}th,td{padding:10px;border-bottom:1px solid var(--line);text-align:center}th{background:#edf3ed;color:var(--green)}.muted{color:var(--muted);font-size:12px}.empty{text-align:center;color:var(--muted);padding:20px}.tag{display:inline-block;padding:4px 8px;border-radius:20px;background:#edf3ed;color:var(--green);font-size:11px}.actions{display:flex;gap:5px;justify-content:center}.actions button{padding:6px 8px;font-size:12px}.notice{background:#fff7e9;border:1px solid #f1dfbd;padding:11px;border-radius:10px;font-size:12px;color:#72552b;margin-bottom:12px}
+@media(max-width:560px){main{padding:10px}header h1{font-size:20px}.card{padding:12px}.num{font-size:23px}}
+
+/* ===== Abu Hatem v10 visual refresh ===== */
+:root{
+  --green:#173f2d;--green2:#286044;--gold:#c99b52;--bg:#f5f2e9;
+  --card:#fffefa;--ink:#24352b;--muted:#788278;--line:#e8e1d3;--red:#b94a48;
+}
+body{
+  background:
+    radial-gradient(ellipse at 95% 0%,rgba(201,155,82,.10),transparent 34%),
+    var(--bg);
+  color:var(--ink);
+}
+header{
+  position:relative;overflow:hidden;
+  padding:27px 18px 25px;
+  background:linear-gradient(125deg,#123525 0%,#1c5038 58%,#34704b 100%);
+  border-bottom:4px solid var(--gold);
+  box-shadow:0 8px 24px rgba(18,53,37,.16);
+}
+header:after{
+  content:"";position:absolute;left:-38px;top:-75px;width:210px;height:210px;
+  border:1px solid rgba(231,196,133,.24);border-radius:50%;
+  box-shadow:0 0 0 22px rgba(231,196,133,.045),0 0 0 48px rgba(231,196,133,.035);
+}
+header h1{font-size:27px;letter-spacing:.1px;position:relative;z-index:1}
+header p{font-size:13px;opacity:.92;position:relative;z-index:1}
+main{max-width:1160px;padding:17px}
+.nav{
+  position:sticky;top:0;z-index:20;gap:9px;padding:12px 2px 15px;
+  background:rgba(245,242,233,.94);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(23,63,45,.08);
+  scrollbar-width:thin;
+}
+.nav button{
+  display:inline-flex;align-items:center;gap:8px;
+  border:1px solid #e5dfd1;border-radius:13px;padding:11px 15px;
+  background:#fffefa;color:#315541;font-size:13px;font-weight:700;
+  box-shadow:0 3px 10px rgba(35,55,40,.045);
+  transition:transform .18s ease,background .18s ease,box-shadow .18s ease;
+}
+.nav button:before{font-size:16px;line-height:1}
+.nav button[data-page="home"]:before{content:"⌂"}
+.nav button[data-page="animals"]:before{content:"🐑"}
+.nav button[data-page="moves"]:before{content:"⇄"}
+.nav button[data-page="expenses"]:before{content:"🌾"}
+.nav button[data-page="reports"]:before{content:"▤"}
+.nav button:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(35,55,40,.09)}
+.nav button.active{
+  color:#fff;background:linear-gradient(135deg,#173f2d,#286044);
+  border-color:#286044;box-shadow:0 5px 14px rgba(23,63,45,.20);
+}
+.page.active{animation:v10fade .22s ease}
+@keyframes v10fade{from{opacity:.65;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+.panel{
+  border:1px solid #e9e2d5;border-radius:19px;padding:18px;
+  box-shadow:0 5px 18px rgba(45,57,43,.055);
+}
+.panel h2{
+  display:flex;align-items:center;gap:9px;color:var(--green);
+  font-size:17px;padding-bottom:10px;border-bottom:1px solid #f0ebdf;
+}
+.panel h2:before{
+  content:"";width:5px;height:19px;border-radius:5px;background:var(--gold);display:inline-block;
+}
+.card{
+  position:relative;overflow:hidden;border:1px solid #eee8dc;border-radius:17px;
+  padding:16px;background:linear-gradient(145deg,#fffefa,#fff);
+  box-shadow:0 4px 14px rgba(45,57,43,.045);
+  transition:transform .18s ease,box-shadow .18s ease;
+}
+.card:after{
+  content:"";position:absolute;left:-20px;bottom:-28px;width:76px;height:76px;
+  border-radius:50%;background:rgba(201,155,82,.075);
+}
+.card:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(45,57,43,.09)}
+.card small{font-weight:700;color:#748074}
+.num{color:#1d573a;font-size:28px;font-variant-numeric:tabular-nums}
+form{gap:12px}
+input,select,textarea{
+  border:1px solid #dedfd4;border-radius:11px;background:#fffefa;
+  padding:12px;transition:border-color .15s,box-shadow .15s;
+}
+input:focus,select:focus,textarea:focus{
+  outline:none;border-color:#b88b45;box-shadow:0 0 0 3px rgba(201,155,82,.15);
+}
+.primary,.secondary,.danger{
+  border-radius:11px;padding:12px 16px;transition:transform .15s,filter .15s;
+}
+.primary{background:linear-gradient(135deg,#173f2d,#2d6848);box-shadow:0 4px 10px rgba(23,63,45,.13)}
+.secondary{background:#f1eee4;color:#315541;border:1px solid #e5dfd1}
+.danger{background:#fff0ed}
+.primary:hover,.secondary:hover,.danger:hover{filter:brightness(.98);transform:translateY(-1px)}
+th{background:#edf1e8;color:#234b35}
+td{background:rgba(255,254,250,.65)}
+.notice{background:#fff8e9;border:1px solid #ead8b5;border-right:4px solid var(--gold);border-radius:12px}
+.tag{background:#edf2e9;color:#28563c}
+@media(max-width:650px){
+  main{padding:10px}
+  header{padding:22px 15px}
+  header h1{font-size:22px}
+  .nav{margin:0 -2px}
+  .nav button{padding:10px 12px;font-size:12px}
+  .panel{padding:14px;border-radius:16px}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .card{padding:12px;min-width:0}
+  .num{font-size:24px}
+  form{grid-template-columns:repeat(2,minmax(0,1fr))}
+  form button{grid-column:1/-1}
+}
+@media(max-width:380px){
+  .grid{grid-template-columns:1fr 1fr}
+  .nav button{gap:5px;padding:9px 10px}
+}
+
+
+/* ===== v11: mobile/APK hardening ===== */
+html{-webkit-text-size-adjust:100%}
+body{overscroll-behavior-y:none;-webkit-tap-highlight-color:transparent;padding-bottom:env(safe-area-inset-bottom,0)}
+header{padding-top:calc(27px + env(safe-area-inset-top,0px))}
+input,select,textarea{font-size:16px}
+.nav button[data-page="feed"]:before{content:"⚖"}
+.alert{background:#fdecea;border:1px solid #f3c6c2;border-right:4px solid var(--red);color:#8a2f2d;padding:11px;border-radius:12px;font-size:13px;margin-bottom:12px;font-weight:700}
+.alert.info{background:#eef5ff;border-color:#c9dcf3;border-right-color:#3a74b8;color:#25508a}
+.tag.low{background:#fdecea;color:#b94a48}.tag.ok{background:#e4f3e7;color:#1d6b3a}
+.inl{width:90px;padding:8px;text-align:center}
+.pos{color:#1d6b3a}.neg{color:#b94a48}
+
+.nav button[data-page="health"]:before{content:"✚"}
+#lockScreen{display:none;position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#173f2d,#2d6848);color:#fff;align-items:center;justify-content:center;flex-direction:column;gap:14px;padding:24px;text-align:center}
+#lockScreen input{max-width:220px;text-align:center;letter-spacing:6px;font-size:22px}
+#lockMsg{color:#f6c7c3;min-height:20px;font-weight:700}
+.tag.warn{background:#fff3d9;color:#8a6212}
 </style></head>
 <body>
-<header><div class="top"><div><h1>🐑 إدارة الحلال – أبو حاتم</h1><small>إدارة مبسطة للقطيع والمصاريف</small></div><span>v1 تجريبي</span></div></header>
+<header><h1>🐑 أبو حاتم | إدارة الحلال <span style='font-size:12px;color:#f0d49f;font-weight:normal'>v12</span></h1><p>متابعة القطيع والمواليد والمبيعات والمصروفات في مكان واحد</p></header>
 <main>
-<nav id="nav">
-<button class="active" data-tab="home">الرئيسية</button><button data-tab="counts">التعداد</button><button data-tab="sales">المبيعات</button><button data-tab="feed">الأعلاف</button><button data-tab="health">العلاجات</button><button data-tab="reports">التقارير</button>
+<nav class="nav" id="nav">
+<button class="active" data-page="home">الرئيسية</button><button data-page="animals">سجل الحيوانات</button><button data-page="moves">حركة القطيع</button><button data-page="expenses">الأعلاف والمصروفات</button><button data-page="feed">حاسبة العلف</button><button data-page="health">الصحة والتطعيمات</button><button data-page="reports">التقارير والنسخ</button>
 </nav>
-<section id="home" class="panel active">
-<div class="note">تطبيق يعمل دون إنترنت بعد حفظه على الجهاز. ابدأ بتثبيت أعداد قطيعك الفعلية من قسم التعداد.</div>
-<div class="grid kpis" id="homeKpis"></div>
-<div class="card"><h2>ملخص السنة الحالية</h2><div class="grid" id="yearKpis"></div></div>
-<div class="card"><h2>الوصول السريع</h2><div class="grid">
-<button class="btn primary" onclick="tab('counts')">إدارة التعداد</button><button class="btn" onclick="tab('feed')">تسجيل الأعلاف</button>
-<button class="btn" onclick="tab('sales')">تسجيل بيع</button><button class="btn" onclick="tab('reports')">التقارير السنوية</button></div></div>
+<section id="home" class="page active">
+<div class="panel"><h2>تفصيل قطيع الغنم</h2><div class="grid">
+<div class="card"><small>الكبار — ذكور (فحول)</small><div class="num" id="shAdultMale">0</div></div>
+<div class="card"><small>الكبار — إناث (نعاج)</small><div class="num" id="shAdultFemale">0</div></div>
+<div class="card"><small>الصغار — طليان</small><div class="num" id="shYoungMale">0</div></div>
+<div class="card"><small>الصغار — رخال</small><div class="num" id="shYoungFemale">0</div></div>
+<div class="card"><small>إجمالي الغنم</small><div class="num" id="sSheep">0</div></div>
+</div></div>
+<div class="panel"><h2>تفصيل قطيع الماعز</h2><div class="grid">
+<div class="card"><small>الكبار — تيوس</small><div class="num" id="goAdultMale">0</div></div>
+<div class="card"><small>الكبار — معز</small><div class="num" id="goAdultFemale">0</div></div>
+<div class="card"><small>الصغار — جفار ذكور</small><div class="num" id="goYoungMale">0</div></div>
+<div class="card"><small>الصغار — جفار إناث</small><div class="num" id="goYoungFemale">0</div></div>
+<div class="card"><small>إجمالي الماعز</small><div class="num" id="sGoat">0</div></div>
+</div></div>
+<div class="grid">
+<div class="card"><small>إجمالي الذكور</small><div class="num" id="sMale">0</div></div>
+<div class="card"><small>إجمالي الإناث</small><div class="num" id="sFemale">0</div></div>
+<div class="card"><small>إجمالي الصغار</small><div class="num" id="sYoung">0</div></div>
+<div class="card"><small>إجمالي البالغين</small><div class="num" id="sAdult">0</div></div>
+<div class="card"><small>مواليد مسجلة</small><div class="num" id="sBirths">0</div></div>
+<div class="card"><small>مصروفات مسجلة</small><div class="num" id="sExpenses">0</div></div>
+</div>
+<div id="alerts"></div><div class="panel"><h2>الملخص المالي</h2><div class="grid" id="finGrid"></div></div>
+ <div class="notice">الأعداد تتغير تلقائيًا عند تسجيل شراء أو ولادة أو بيع أو نفوق. ويمكنك تعديل بيانات أي حيوان من سجل الحيوانات. احفظ نسخة احتياطية بانتظام.</div>
+<div class="panel"><h2>ملخص القطيع حسب النوع</h2><div id="herdSummary" class="muted"></div></div>
 </section>
-<section id="counts" class="panel">
-<div class="note">التعداد مفصول حسب النوع والعمر والجنس. الولادة تزيد عدد الصغار تلقائياً، والبيع والنفوق والناكس تخصم من الفئة التي تحددها.</div>
-<div class="grid kpis" id="countKpis"></div>
-<div class="card"><h2>تفاصيل التعداد الحالي</h2><div class="tablewrap"><table><thead><tr><th>النوع</th><th>العمر</th><th>إناث</th><th>ذكور</th><th>المجموع</th></tr></thead><tbody id="countTable"></tbody></table></div></div>
-<div class="card"><h2>تعديل العدد الأساسي</h2><div class="row"><div><label>نوع الحلال</label><select id="baseAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>الفئة العمرية</label><select id="baseAge"><option value="adult">كبار</option><option value="young">صغار / بهام</option></select></div><div><label>عدد الإناث</label><input id="baseF" type="number" min="0" value="0"></div><div><label>عدد الذكور</label><input id="baseM" type="number" min="0" value="0"></div></div><button class="btn primary" style="margin-top:12px" onclick="setBase()">حفظ التعداد الأساسي</button></div>
-<div class="card"><h2>تسجيل حركة (ولادة / نفوق / ناكس / إضافة)</h2><div class="row"><div><label>التاريخ</label><input id="eventDate" type="date"></div><div><label>وقت الحدث</label><input id="eventTime" type="time"></div><div><label>نوع الحركة</label><select id="eventType"><option value="ولادة">ولادة جديدة (+)</option><option value="إضافة">إضافة للقطيع (+)</option><option value="نفوق">نفوق (-)</option><option value="ناكس">ناكس (-)</option></select></div><div><label>نوع الحلال</label><select id="eventAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>العمر</label><select id="eventAge"><option value="young">صغير / بهام</option><option value="adult">كبير</option></select></div><div><label>الجنس</label><select id="eventGender"><option value="f">أنثى</option><option value="m">ذكر</option></select></div><div><label>العدد</label><input id="eventCount" type="number" min="1" value="1"></div><div><label>ملاحظات</label><input id="eventNotes" placeholder="اختياري"></div></div><button class="btn primary" style="margin-top:12px" onclick="addEvent()">تسجيل الحركة وتحديث التعداد</button></div>
-<div class="card"><h2>سجل الحركات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ والوقت</th><th>الحركة</th><th>التفاصيل</th><th>العدد</th><th>حذف وعكس</th></tr></thead><tbody id="eventTable"></tbody></table></div></div>
+<section id="animals" class="page">
+<div class="panel"><h2 id="animalFormTitle">إضافة حيوان / مجموعة</h2>
+<form id="animalForm">
+<input type="hidden" id="animalId">
+<div class="field"><label>رقم الحيوان (اختياري)</label><input id="animalNo" placeholder="مثال: غنم-001"></div>
+<div class="field"><label>النوع</label><select id="animalType"><option value="غنم">غنم</option><option value="ماعز">ماعز</option></select></div>
+<div class="field"><label>الجنس</label><select id="animalSex"><option value="أنثى">أنثى</option><option value="ذكر">ذكر</option><option value="غير محدد">غير محدد</option></select></div>
+<div class="field"><label>تاريخ الميلاد</label><input type="date" id="animalDob"></div>
+<div class="field"><label>تصنيف العمر</label><input value="تلقائي حسب تاريخ الميلاد (أقل من 12 شهر = صغير)" disabled></div>
+<div class="field"><label>العدد</label><input type="number" id="animalQty" min="1" value="1" required></div>
+<div class="field"><label>الحالة</label><select id="animalStatus"><option value="موجود">موجود</option><option value="مباع">مباع</option><option value="نافق">نافق</option><option value="مستبعد">مستبعد</option></select></div>
+<div class="field"><label>ملاحظات</label><input id="animalNotes" placeholder="لون، سلالة، ملاحظات..."></div>
+<button class="primary" type="submit">حفظ السجل</button></form></div>
+<div class="panel"><h2>سجل الحيوانات</h2><div class="toolbar"><input id="animalSearch" placeholder="بحث بالرقم أو الملاحظات" style="max-width:260px"><select id="animalFilter" style="max-width:180px"><option value="">كل الأنواع</option><option>غنم</option><option>ماعز</option></select></div><div class="table-wrap"><table><thead><tr><th>الرقم</th><th>النوع</th><th>الجنس</th><th>تاريخ الميلاد</th><th>العمر</th><th>العدد</th><th>الحالة</th><th>إجراءات</th></tr></thead><tbody id="animalsBody"></tbody></table></div></div>
 </section>
-<section id="sales" class="panel">
-<div class="card"><h2>تسجيل عملية بيع</h2><div class="row"><div><label>التاريخ</label><input id="saleDate" type="date"></div><div><label>نوع الحلال</label><select id="saleAnimal"><option value="sheep">غنم / ضأن</option><option value="goat">ماعز</option></select></div><div><label>العمر</label><select id="saleAge"><option value="adult">كبير</option><option value="young">صغير / بهام</option></select></div><div><label>الجنس</label><select id="saleGender"><option value="m">ذكر</option><option value="f">أنثى</option></select></div><div><label>العدد المباع</label><input id="saleQty" type="number" min="1" value="1"></div><div><label>سعر الرأس (ريال)</label><input id="salePrice" type="number" min="0" step=".01" value="0"></div></div><div class="total" id="saleTotal">الإجمالي: 0 ريال</div><button class="btn primary" onclick="addSale()">تسجيل البيع وخصم العدد</button></div>
-<div class="card"><h2>سجل المبيعات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>التفاصيل</th><th>العدد</th><th>الإيراد</th><th>حذف وعكس</th></tr></thead><tbody id="salesTable"></tbody></table></div></div>
+<section id="moves" class="page">
+<div class="panel"><h2>تسجيل حركة القطيع</h2><form id="moveForm">
+<div class="field"><label>التاريخ</label><input type="date" id="moveDate" required></div>
+<div class="field"><label>الحركة</label><select id="moveAction"><option>شراء</option><option>ولادة</option><option>بيع</option><option>نفوق</option><option>ذبح للثلاجة</option><option>تعديل رصيد بالزيادة</option><option>تعديل رصيد بالنقص</option></select></div>
+<div class="field"><label>النوع</label><select id="moveType"><option>غنم</option><option>ماعز</option></select></div>
+<div class="field"><label>الجنس</label><select id="moveSex"><option>أنثى</option><option>ذكر</option><option>غير محدد</option></select></div>
+<div class="field"><label>العدد</label><input type="number" id="moveQty" min="1" value="1" required></div>
+<div class="field"><label>سعر الرأس (ريال)</label><input type="number" id="movePrice" min="0" step=".01" value="0"></div>
+<div class="field"><label>تاريخ ميلاد المواليد (للولادة)</label><input type="date" id="birthDate"></div>
+<div class="field"><label>ملاحظات</label><input id="moveNotes"></div>
+<button class="primary">تسجيل الحركة</button></form></div>
+<div class="panel"><h2>سجل الحركات</h2><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الحركة</th><th>النوع</th><th>الجنس</th><th>العدد</th><th>الإجمالي</th><th>ملاحظات</th><th>إجراء</th></tr></thead><tbody id="movesBody"></tbody></table></div></div>
 </section>
-<section id="feed" class="panel">
-<div class="card"><h2>تسجيل فاتورة أعلاف ومياه</h2><div class="row"><div><label>تاريخ الفاتورة</label><input id="feedDate" type="date"></div><div><label>الصنف</label><select id="feedItem"><option>شعير</option><option>مركز / وافي</option><option>برسيم</option><option>بروتين</option><option>ماء</option><option>أخرى</option></select></div><div><label>الكمية</label><input id="feedQty" type="number" min=".01" step=".01" value="1"></div><div><label>سعر الوحدة (ريال)</label><input id="feedPrice" type="number" min="0" step=".01" value="0"></div></div><div class="total" id="feedTotal">إجمالي الفاتورة: 0 ريال</div><button class="btn primary" onclick="addFeed()">حفظ الفاتورة</button></div>
-<div class="card"><h2>تقرير دورة الأعلاف (من 27 إلى 26)</h2><label>شهر التقرير</label><input id="feedMonth" type="month"><div class="total" id="feedMonthTotal">0 ريال</div><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>الصنف</th><th>الكمية</th><th>الإجمالي</th><th>حذف</th></tr></thead><tbody id="feedTable"></tbody></table></div></div>
+<section id="expenses" class="page">
+<div class="panel"><h2>إضافة مصروف أو مشتريات</h2><form id="expenseForm">
+<div class="field"><label>التاريخ</label><input type="date" id="expDate" required></div>
+<div class="field"><label>التصنيف</label><select id="expCategory"><option>شعير فلكس</option><option>وافي تربية</option><option>مكعبات روابي 21</option><option>برسيم</option><option>قصب</option><option>رودس</option><option>أعلاف أخرى</option><option>أدوية وفيتامينات</option><option>مستلزمات وأخرى</option></select></div>
+<div class="field"><label>الوصف / المورد</label><input id="expDesc" required placeholder="مثال: شعير 10 أكياس"></div>
+<div class="field"><label>الكمية</label><input type="number" id="expQty" min="0" step=".01" value="1"></div>
+<div class="field"><label>الوحدة</label><input id="expUnit" placeholder="كيس، كيلو، بالة..."></div>
+<div class="field"><label>المبلغ (ريال)</label><input type="number" id="expAmount" min="0" step=".01" required></div>
+<div class="field"><label>إضافة للمخزون تلقائيًا؟</label><select id="expStock"><option value="">لا</option><option value="1">نعم (صنف علف)</option></select></div> <button class="primary">حفظ المصروف</button></form></div>
+<div class="panel"><h2>إدارة أسماء الأعلاف</h2>
+<p class="muted">هذه قائمة الأصناف التي تظهر عند تسجيل شراء أو صرف العلف. يمكنك إضافة صنف جديد أو تعديل اسمه.</p>
+<div class="field"><label>اسم العلف الجديد</label><input id="newFeedType" placeholder="اكتب اسم العلف"></div>
+<button type="button" class="primary" id="addFeedTypeBtn">إضافة صنف</button>
+<div class="table-wrap" style="margin-top:12px"><table><thead><tr><th>اسم الصنف</th><th>إجراء</th></tr></thead><tbody id="feedTypesBody"></tbody></table></div>
+</div>
+<div class="panel"><h2>إدارة مخزون الشعير والأعلاف</h2>
+<p class="muted">سجّل الكميات عند الشراء، وسجّل ما يُصرف للاستهلاك. الرصيد يُحسب تلقائيًا، ولا يسمح بصرف كمية أكبر من المتوفر.</p>
+<form id="stockForm">
+<div class="field"><label>نوع الحركة</label><select id="stockAction"><option value="شراء">شراء وإضافة للمخزون</option><option value="صرف">صرف واستهلاك من المخزون</option></select></div>
+<div class="field"><label>الصنف</label><select id="stockCategory"></select></div>
+<div class="field"><label>الكمية</label><input type="number" id="stockQty" min="0.01" step="0.01" required></div>
+<div class="field"><label>الوحدة</label><input id="stockUnit" required placeholder="كيس، كيلو، بالة..."></div>
+<div class="field"><label>التاريخ</label><input type="date" id="stockDate" required></div>
+<div class="field"><label>ملاحظات</label><input id="stockNotes" placeholder="مثال: صرف يومي للحلال"></div>
+<button class="primary">تسجيل حركة المخزون</button></form></div>
+<div class="panel"><h2>الرصيد الحالي للمخزون</h2><div class="table-wrap"><table><thead><tr><th>الصنف</th><th>الوحدة</th><th>إجمالي الوارد</th><th>إجمالي المنصرف</th><th>المتبقي</th></tr></thead><tbody id="stockBalanceBody"></tbody></table></div></div>
+<div class="panel"><h2>سجل حركة المخزون</h2><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>الحركة</th><th>الصنف</th><th>الكمية</th><th>الوحدة</th><th>ملاحظات</th></tr></thead><tbody id="stockMovesBody"></tbody></table></div></div>
+<div class="panel"><h2>سجل المصروفات</h2><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>التصنيف</th><th>الوصف</th><th>الكمية</th><th>المبلغ</th><th>الدورة المالية</th><th>إجراء</th></tr></thead><tbody id="expensesBody"></tbody></table></div><h2 style="margin-top:22px">ملخص الدورات المالية (من 27 إلى 26)</h2><div class="table-wrap"><table><thead><tr><th>الدورة</th><th>بداية الدورة</th><th>نهاية الدورة</th><th>إجمالي المصروفات</th></tr></thead><tbody id="cyclesBody"></tbody></table></div></div>
 </section>
-<section id="health" class="panel">
-<div class="card"><h2>تسجيل علاج أو تحصين</h2><div class="row"><div><label>التاريخ</label><input id="healthDate" type="date"></div><div><label>التصنيف</label><select id="healthCat"><option>فيتامينات</option><option>مضاد حيوي</option><option>تحصين</option><option>طفيليات وديدان</option><option>أخرى</option></select></div><div><label>اسم العلاج</label><input id="healthName"></div><div><label>الفئة المستهدفة</label><input id="healthTarget" placeholder="مثال: صغار الغنم"></div><div><label>التكلفة (ريال)</label><input id="healthCost" type="number" min="0" value="0"></div></div><button class="btn primary" style="margin-top:12px" onclick="addHealth()">حفظ السجل الطبي</button></div>
-<div class="card"><h2>سجل العلاجات</h2><div class="tablewrap"><table><thead><tr><th>التاريخ</th><th>العلاج</th><th>الفئة</th><th>التكلفة</th><th>حذف</th></tr></thead><tbody id="healthTable"></tbody></table></div></div>
+<section id="feed" class="page">
+<div class="panel"><h2>حاسبة العلف</h2><p class="muted">حدّد مقرر كل صنف لكل رأس يوميًا (كبير / صغير)، فيحسب التطبيق الاحتياج اليومي والأسبوعي والشهري والتكلفة والأيام المتبقية من المخزون. الصغير = أقل من 12 شهرًا.</p>
+<div class="field" style="max-width:240px"><label>احسب لـ</label><select id="feedScope"><option value="">الغنم والماعز معًا</option><option value="غنم">الغنم فقط</option><option value="ماعز">الماعز فقط</option></select></div>
+<div class="grid" id="feedHerd" style="margin-top:12px"></div></div>
+<div class="panel"><h2>مقررات العلف (كجم لكل رأس يوميًا)</h2><p class="muted">أصناف العلف تُدار من تبويب «الأعلاف والمصروفات». إن كانت وحدة الصنف كيس فاكتب وزن الكيس بالكيلو.</p><div class="table-wrap"><table><thead><tr><th>الصنف</th><th>كبير</th><th>صغير</th><th>الوحدة</th><th>وزن الوحدة (كجم)</th><th>سعر الوحدة (ر.س)</th></tr></thead><tbody id="rationBody"></tbody></table></div></div>
+<div class="panel"><h2>الاحتياج والمخزون</h2><div class="table-wrap"><table><thead><tr><th>الصنف</th><th>يوميًا (كجم)</th><th>أسبوعيًا</th><th>شهريًا (30 يوم)</th><th>المخزون</th><th>الأيام المتبقية</th><th>تكلفة شهرية</th></tr></thead><tbody id="feedResBody"></tbody></table></div><div id="feedTotal" class="muted" style="margin-top:10px"></div><div class="toolbar"><button class="primary" type="button" id="feedDailyBtn">تسجيل صرف اليوم من المخزون</button></div><p class="muted">يخصم كمية اليوم من المخزون لكل صنف محدد المقرر، وينبّهك إن كان الرصيد غير كافٍ.</p></div>
 </section>
-<section id="reports" class="panel">
-<div class="card"><h2>التقرير المالي السنوي</h2><label>السنة</label><input id="reportYear" type="number" min="2000" max="2100"><div class="grid kpis" id="reportKpis"></div><p class="muted">صافي التشغيل = إيرادات البيع − الأعلاف والماء − العلاجات. لا يشمل تكلفة شراء المواشي أو العمالة أو المصاريف التي لم تسجلها.</p></div>
-<div class="card"><h2>النسخ الاحتياطي</h2><p class="muted">احفظ نسخة من بياناتك في ملف، واستعدها عند تغيير الجوال أو المتصفح.</p><div class="actions"><button class="btn primary" onclick="backup()">تنزيل نسخة احتياطية</button><button class="btn" onclick="document.getElementById('restoreFile').click()">استعادة نسخة</button><input id="restoreFile" type="file" accept="application/json" hidden onchange="restore(event)"></div></div>
-<div class="card"><h2>سجل المصروفات والإيرادات</h2><div class="tablewrap"><table><thead><tr><th>البند</th><th>المبلغ</th></tr></thead><tbody id="summaryTable"></tbody></table></div></div>
+<section id="health" class="page">
+<div class="panel"><h2>مواعيد قادمة ومتأخرة</h2><div class="table-wrap"><table><thead><tr><th>الموعد</th><th>النوع</th><th>الاسم</th><th>الفئة</th><th>إجراء</th></tr></thead><tbody id="remBody"></tbody></table></div></div>
+<div class="panel"><h2>تسجيل تطعيم / علاج / فحص</h2><form id="healthForm">
+<div class="field"><label>تاريخ التنفيذ</label><input type="date" id="hDate" required></div>
+<div class="field"><label>النوع</label><select id="hKind"><option>تطعيم</option><option>علاج</option><option>فحص بيطري</option><option>مكافحة طفيليات</option><option>تقليم / حلاقة</option><option>أخرى</option></select></div>
+<div class="field"><label>الفئة</label><select id="hScope"><option value="">كل القطيع</option><option>غنم</option><option>ماعز</option></select></div>
+<div class="field"><label>رقم الأذن (اختياري)</label><input id="hEar" placeholder="مثال: 125"></div>
+<div class="field"><label>اسم التطعيم / الدواء</label><input id="hName" placeholder="مثال: جدري الأغنام" required></div>
+<div class="field"><label>التكلفة (ر.س)</label><input type="number" id="hCost" min="0" step="0.01" value="0"></div>
+<div class="field"><label>الموعد القادم (اختياري)</label><input type="date" id="hNext"></div>
+<div class="field"><label>ملاحظات</label><input id="hNotes"></div>
+<button class="primary">حفظ السجل</button></form><p class="muted">إن أدخلت تكلفة تُضاف تلقائيًا إلى المصروفات (أدوية وفيتامينات).</p></div>
+<div class="panel"><h2>السجل الصحي</h2><div class="table-wrap"><table><thead><tr><th>التاريخ</th><th>النوع</th><th>الاسم</th><th>الفئة</th><th>التكلفة</th><th>القادم</th><th>إجراء</th></tr></thead><tbody id="healthBody"></tbody></table></div></div>
+</section>
+<section id="reports" class="page">
+<div class="panel"><h2>النسخ الاحتياطي ونقل البيانات</h2><p class="muted">صدّر نسخة JSON للاحتفاظ بكل سجلاتك، ويمكن استعادتها لاحقًا على نفس الجهاز أو جهاز آخر.</p><div class="toolbar"><button class="primary" id="exportBtn">تصدير نسخة احتياطية</button><button class="secondary" id="importBtn">استعادة نسخة</button><input type="file" id="importFile" accept=".json,application/json" hidden></div><button class="secondary" id="csvBtn">تصدير سجل الحيوانات CSV</button></div>
+<div class="panel"><h2>قفل التطبيق برقم سري</h2><p class="muted">بياناتك خاصة بجوالك فقط ولا تُرسل لأي جهة. القفل يخفي التطبيق عمّن يمسك جوالك. إن نسيت الرقم فلا توجد طريقة لاسترجاعه إلا بمسح بيانات التطبيق (وتفقد ما لم تصدّره)، فاحتفظ بنسخة احتياطية.</p><div class="toolbar"><input type="password" inputmode="numeric" id="pinNew" placeholder="4 إلى 8 أرقام" maxlength="8" style="max-width:200px"><button class="primary" type="button" id="pinSet">تفعيل / تغيير القفل</button><button class="danger" type="button" id="pinOff">إلغاء القفل</button></div><div class="muted" id="pinState"></div></div>
+<div class="panel"><h2>تنبيه مهم</h2><p class="muted">البيانات محفوظة محليًا على هذا الجهاز فقط. لا تحذف بيانات التطبيق أو تمسح ذاكرته قبل تصدير نسخة احتياطية، وعند تغيير الجوال استعد النسخة من هنا. في التطبيق يفتح التصدير قائمة المشاركة لتحفظ الملف في «الملفات» أو ترسله لنفسك عبر واتساب/البريد.</p></div>
 </section>
 </main>
-<footer><button onclick="tab('home')">الرئيسية</button><button onclick="tab('counts')">التعداد</button><button onclick="tab('feed')">الأعلاف</button><button onclick="tab('reports')">التقارير</button></footer>
+<div id="lockScreen"><div style="font-size:54px">🐑</div><h2 style="color:#fff">أبو حاتم</h2><p>أدخل الرقم السري</p><input type="password" inputmode="numeric" id="lockInput" maxlength="8" autocomplete="off"><div id="lockMsg"></div><button class="primary" style="background:#c99b52;color:#173f2d" id="lockBtn">فتح</button></div>
 <script>
-const KEY='abu_hatem_offline_v1';
-const initial={counts:{sheep:{adult:{f:40,m:3},young:{f:9,m:8}},goat:{adult:{f:12,m:2},young:{f:4,m:2}}},events:[],sales:[],feeds:[],health:[]};
-let db=load();function load(){try{return JSON.parse(localStorage.getItem(KEY))||structuredClone(initial)}catch{return structuredClone(initial)}}
-function save(){localStorage.setItem(KEY,JSON.stringify(db));render()}
-const $=id=>document.getElementById(id), today=()=>new Date().toLocaleDateString('en-CA');
-function setDates(){['eventDate','saleDate','feedDate','healthDate'].forEach(x=>$(x).value=today());$('feedMonth').value=today().slice(0,7);$('reportYear').value=new Date().getFullYear()}
-function tab(id){document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.tab===id));render()}
-$('nav').addEventListener('click',e=>{let b=e.target.closest('button[data-tab]');if(b)tab(b.dataset.tab)});
-function sumAnimal(a){let c=db.counts[a];return c.adult.f+c.adult.m+c.young.f+c.young.m}
-function sumAge(age){return ['sheep','goat'].reduce((n,a)=>n+db.counts[a][age].f+db.counts[a][age].m,0)}
-function totalHeads(){return sumAnimal('sheep')+sumAnimal('goat')}
-function money(n){return (Number(n)||0).toLocaleString('ar-SA',{minimumFractionDigits:2,maximumFractionDigits:2})+' ر.س'}
-function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
-function labelAnimal(a){return a==='sheep'?'غنم':'ماعز'}function labelAge(a){return a==='adult'?'كبار':'صغار'}function labelGender(g){return g==='f'?'إناث':'ذكور'}
-function setBase(){let a=$('baseAnimal').value,age=$('baseAge').value,f=+$('baseF').value,m=+$('baseM').value;if(f<0||m<0||!Number.isInteger(f)||!Number.isInteger(m))return alert('أدخل أعداداً صحيحة غير سالبة');db.counts[a][age]={f,m};save();alert('تم حفظ التعداد الأساسي')}
-function addEvent(){let e={id:Date.now(),date:$('eventDate').value,time:$('eventTime').value,type:$('eventType').value,animal:$('eventAnimal').value,age:$('eventAge').value,gender:$('eventGender').value,count:+$('eventCount').value,notes:$('eventNotes').value};if(!e.date||!Number.isInteger(e.count)||e.count<1)return alert('تحقق من التاريخ والعدد');let sign=['ولادة','إضافة'].includes(e.type)?1:-1;if(sign<0&&db.counts[e.animal][e.age][e.gender]<e.count)return alert('العدد أكبر من الموجود في هذه الفئة');db.counts[e.animal][e.age][e.gender]+=sign*e.count;db.events.unshift(e);save();$('eventNotes').value='';alert('تم تحديث التعداد')}
-function reverseEvent(e){let sign=['ولادة','إضافة'].includes(e.type)?-1:1;db.counts[e.animal][e.age][e.gender]=Math.max(0,db.counts[e.animal][e.age][e.gender]+sign*e.count)}
-function removeEvent(id){let e=db.events.find(x=>x.id===id);if(e&&confirm('حذف الحركة وعكس أثرها على التعداد؟')){reverseEvent(e);db.events=db.events.filter(x=>x.id!==id);save()}}
-function addSale(){let s={id:Date.now(),date:$('saleDate').value,animal:$('saleAnimal').value,age:$('saleAge').value,gender:$('saleGender').value,count:+$('saleQty').value,price:+$('salePrice').value};if(!s.date||!Number.isInteger(s.count)||s.count<1||s.price<=0)return alert('أدخل التاريخ والعدد والسعر بشكل صحيح');if(db.counts[s.animal][s.age][s.gender]<s.count)return alert('العدد المباع أكبر من المتاح');db.counts[s.animal][s.age][s.gender]-=s.count;s.total=s.count*s.price;db.sales.unshift(s);save();alert('تم تسجيل البيع وخصم العدد')}
-function removeSale(id){let s=db.sales.find(x=>x.id===id);if(s&&confirm('حذف البيع وإعادة الرؤوس للتعداد؟')){db.counts[s.animal][s.age][s.gender]+=s.count;db.sales=db.sales.filter(x=>x.id!==id);save()}}
-function addFeed(){let f={id:Date.now(),date:$('feedDate').value,item:$('feedItem').value,qty:+$('feedQty').value,price:+$('feedPrice').value};if(!f.date||f.qty<=0||f.price<0)return alert('تحقق من التاريخ والكمية والسعر');f.total=f.qty*f.price;db.feeds.unshift(f);save();alert('تم حفظ الفاتورة')}
-function removeFeed(id){if(confirm('حذف الفاتورة؟')){db.feeds=db.feeds.filter(x=>x.id!==id);save()}}
-function addHealth(){let h={id:Date.now(),date:$('healthDate').value,cat:$('healthCat').value,name:$('healthName').value.trim(),target:$('healthTarget').value,cost:+$('healthCost').value};if(!h.date||!h.name||h.cost<0)return alert('أدخل التاريخ واسم العلاج وتكلفة صحيحة');db.health.unshift(h);save();$('healthName').value='';alert('تم حفظ السجل الطبي')}
-function removeHealth(id){if(confirm('حذف السجل؟')){db.health=db.health.filter(x=>x.id!==id);save()}}
-function cycleMatch(date,month){if(!month)return true;let [y,m]=month.split('-').map(Number);let start=new Date(y,m-2,27),end=new Date(y,m-1,26,23,59,59);let d=new Date(date+'T12:00:00');return d>=start&&d<=end}
-function render(){let sheep=sumAnimal('sheep'),goat=sumAnimal('goat'),ad=sumAge('adult'),yo=sumAge('young');
-$('homeKpis').innerHTML=[['إجمالي الرؤوس',totalHeads()],['الغنم',sheep],['الماعز',goat],['الكبار / الصغار',ad+' / '+yo]].map(x=>`<div class="kpi"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
-$('countKpis').innerHTML=[['إجمالي الغنم',sheep],['إجمالي الماعز',goat],['الكبار',ad],['الصغار / البهام',yo]].map(x=>`<div class="kpi"><span>${x[0]}</span><b>${x[1]}</b></div>`).join('');
-$('countTable').innerHTML=['sheep','goat'].map(a=>['adult','young'].map(age=>{let c=db.counts[a][age];return `<tr><td>${labelAnimal(a)}</td><td>${labelAge(age)}</td><td>${c.f}</td><td>${c.m}</td><td><b>${c.f+c.m}</b></td></tr>`}).join('')).join('');
-$('eventTable').innerHTML=db.events.map(e=>`<tr><td>${safe(e.date)} ${safe(e.time)}</td><td>${safe(e.type)}</td><td>${labelAnimal(e.animal)} – ${labelAge(e.age)} – ${labelGender(e.gender)}</td><td>${e.count}</td><td><button class="btn danger" onclick="removeEvent(${e.id})">حذف وعكس</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد حركات مسجلة</td></tr>';
-$('salesTable').innerHTML=db.sales.map(s=>`<tr><td>${safe(s.date)}</td><td>${labelAnimal(s.animal)} – ${labelAge(s.age)} – ${labelGender(s.gender)}</td><td>${s.count}</td><td>${money(s.total)}</td><td><button class="btn danger" onclick="removeSale(${s.id})">حذف وعكس</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد مبيعات</td></tr>';
-let fm=$('feedMonth').value,cycle=db.feeds.filter(f=>cycleMatch(f.date,fm));$('feedMonthTotal').textContent='إجمالي الدورة: '+money(cycle.reduce((n,f)=>n+f.total,0));
-$('feedTable').innerHTML=db.feeds.map(f=>`<tr><td>${safe(f.date)}</td><td>${safe(f.item)}</td><td>${f.qty}</td><td>${money(f.total)}</td><td><button class="btn danger" onclick="removeFeed(${f.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد فواتير</td></tr>';
-$('healthTable').innerHTML=db.health.map(h=>`<tr><td>${safe(h.date)}</td><td>${safe(h.cat)} – ${safe(h.name)}</td><td>${safe(h.target)}</td><td>${money(h.cost)}</td><td><button class="btn danger" onclick="removeHealth(${h.id})">حذف</button></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لا توجد علاجات</td></tr>';
-let year=String($('reportYear').value||new Date().getFullYear()),sales=db.sales.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.total,0),feeds=db.feeds.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.total,0),health=db.health.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.cost,0),sold=db.sales.filter(x=>x.date.startsWith(year)).reduce((n,x)=>n+x.count,0),net=sales-feeds-health;
-$('yearKpis').innerHTML=[['مبيعات السنة',money(sales)],['مصروف الأعلاف',money(feeds)],['العلاجات',money(health)],['صافي التشغيل',money(net)]].map(x=>`<div class="kpi"><span>${x[0]}</span><b style="font-size:16px">${x[1]}</b></div>`).join('');
-$('reportKpis').innerHTML=[['عدد الرؤوس المباعة',sold+' رأس'],['إيرادات البيع',money(sales)],['الأعلاف والماء',money(feeds)],['العلاجات',money(health)],['صافي التشغيل',money(net)]].map(x=>`<div class="kpi"><span>${x[0]}</span><b style="font-size:16px">${x[1]}</b></div>`).join('');
-$('summaryTable').innerHTML=`<tr><td>إيرادات البيع</td><td>${money(sales)}</td></tr><tr><td>الأعلاف والماء</td><td>${money(feeds)}</td></tr><tr><td>العلاجات</td><td>${money(health)}</td></tr><tr><td><b>صافي التشغيل</b></td><td><b>${money(net)}</b></td></tr>`;
-let qty=+$('saleQty').value||0,price=+$('salePrice').value||0;$('saleTotal').textContent='إجمالي البيع: '+money(qty*price);
-let fq=+$('feedQty').value||0,fp=+$('feedPrice').value||0;$('feedTotal').textContent='إجمالي الفاتورة: '+money(fq*fp);
+const KEY='abu_hatim_v6_data';
+let db=load();
+db.stockMoves=Array.isArray(db.stockMoves)?db.stockMoves:[];
+db.health=Array.isArray(db.health)?db.health:[];
+db.rations=(db.rations&&typeof db.rations==='object'&&!Array.isArray(db.rations))?db.rations:{};
+db.feedTypes=Array.isArray(db.feedTypes)&&db.feedTypes.length?db.feedTypes:['شعير فلكس','وافي تربية','مكعبات روابي 21','برسيم','قصب','رودس','أعلاف أخرى'];
+function load(){try{return JSON.parse(localStorage.getItem(KEY))||{animals:[],moves:[],expenses:[]}}catch(e){return{animals:[],moves:[],expenses:[]}}}
+function uid(){try{if(crypto&&crypto.randomUUID)return uid()}catch(e){}return 'id'+Date.now().toString(36)+Math.random().toString(36).slice(2,10)}
+function persist(){try{localStorage.setItem(KEY,JSON.stringify(db));return true}catch(e){alert('تعذّر حفظ البيانات (الذاكرة ممتلئة؟). صدّر نسخة احتياطية الآن.');return false}}
+function save(){persist();render()}
+try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
+function isYoungA(a){if(!a.dob)return false;let d=new Date(a.dob+'T12:00:00'),now=new Date();let m=(now.getFullYear()-d.getFullYear())*12+now.getMonth()-d.getMonth();if(now.getDate()<d.getDate())m--;return m<12&&m>=0}
+function today(){let d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`}
+['moveDate','expDate','stockDate'].forEach(id=>document.getElementById(id).value=today());
+document.querySelectorAll('.nav button').forEach(b=>b.onclick=()=>{document.querySelectorAll('.nav button').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.page).classList.add('active')});
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function age(d){if(!d)return'غير محدد';let a=new Date(d+'T12:00:00'),n=new Date(),m=(n.getFullYear()-a.getFullYear())*12+n.getMonth()-a.getMonth();if(n.getDate()<a.getDate())m--;return m<0?'تاريخ غير صحيح':m<12?`${m} شهر`:`${Math.floor(m/12)} سنة و${m%12} شهر`}
+function current(){return db.animals.filter(a=>a.status==='موجود')}
+function count(arr,fn){return arr.filter(fn).reduce((s,a)=>s+Number(a.qty||1),0)}
+function financial(d){let x=d.split('-').map(Number),y=x[0],m=x[1],day=x[2],sy=y,sm=m,ey=y,em=m;if(day>=27){em++;if(em===13){em=1;ey++}}else{sm--;if(sm===0){sm=12;sy--}}return{label:`${sm}/${sy}`,start:`${sy}-${String(sm).padStart(2,'0')}-27`,end:`${ey}-${String(em).padStart(2,'0')}-26`}}
+function render(){
+let live=current();let n=(t)=>count(live,a=>a.type===t);
+const isYoung=a=>{if(!a.dob)return false;let d=new Date(a.dob+'T12:00:00'),now=new Date();let months=(now.getFullYear()-d.getFullYear())*12+now.getMonth()-d.getMonth();if(now.getDate()<d.getDate())months--;return months<12&&months>=0};
+const group=(type,sex,young)=>count(live,a=>a.type===type&&a.sex===sex&&isYoung(a)===young);
+let shAM=group('غنم','ذكر',false),shAF=group('غنم','أنثى',false),shYM=group('غنم','ذكر',true),shYF=group('غنم','أنثى',true);
+let goAM=group('ماعز','ذكر',false),goAF=group('ماعز','أنثى',false),goYM=group('ماعز','ذكر',true),goYF=group('ماعز','أنثى',true);
+document.getElementById('shAdultMale').textContent=shAM;document.getElementById('shAdultFemale').textContent=shAF;document.getElementById('shYoungMale').textContent=shYM;document.getElementById('shYoungFemale').textContent=shYF;
+document.getElementById('goAdultMale').textContent=goAM;document.getElementById('goAdultFemale').textContent=goAF;document.getElementById('goYoungMale').textContent=goYM;document.getElementById('goYoungFemale').textContent=goYF;
+sSheep.textContent=n('غنم');sGoat.textContent=n('ماعز');sMale.textContent=count(live,a=>a.sex==='ذكر');sFemale.textContent=count(live,a=>a.sex==='أنثى');
+sYoung.textContent=count(live,isYoung);sAdult.textContent=count(live,a=>!isYoung(a));
+sBirths.textContent=count(db.moves,m=>m.action==='ولادة');sExpenses.textContent=db.expenses.reduce((s,e)=>s+Number(e.amount||0),0).toFixed(2)+' ر.س';
+herdSummary.textContent=`الغنم: ${n('غنم')} رأس — الماعز: ${n('ماعز')} رأس. الصغير يُحسب تلقائيًا لمن عمره أقل من 12 شهرًا بناءً على تاريخ الميلاد.`;
+renderAnimals();renderMoves();renderExpenses();renderStock();renderFinance();renderFeed();renderHealth();renderAlerts();
 }
-['saleQty','salePrice','feedQty','feedPrice','feedMonth','reportYear'].forEach(id=>$(id).addEventListener('input',render));
-function backup(){let blob=new Blob([JSON.stringify(db,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='نسخة-احتياطية-إدارة-الحلال.json';a.click();URL.revokeObjectURL(a.href)}
-function restore(ev){let f=ev.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let d=JSON.parse(r.result);if(!d.counts||!Array.isArray(d.sales)||!Array.isArray(d.events))throw 0;if(confirm('استبدال البيانات الحالية بالنسخة المختارة؟')){db=d;save();alert('تمت الاستعادة')}}catch{alert('ملف النسخة غير صالح')}};r.readAsText(f)}
-setDates();render();
-if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+function renderAnimals(){let q=animalSearch.value.toLowerCase(),f=animalFilter.value;let rows=db.animals.filter(a=>(!f||a.type===f)&&(`${a.no||''} ${a.notes||''} ${a.type}`).toLowerCase().includes(q));animalsBody.innerHTML=rows.map(a=>`<tr><td>${esc(a.no||'—')}</td><td>${esc(a.type)}</td><td>${esc(a.sex)}</td><td>${esc(a.dob||'—')}</td><td>${esc(age(a.dob))}</td><td>${a.qty}</td><td><span class="tag">${esc(a.status)}</span></td><td class="actions"><button class="secondary" onclick="editAnimal('${a.id}')">تعديل</button><button class="danger" onclick="deleteAnimal('${a.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">لا توجد سجلات بعد</td></tr>'}
+animalSearch.oninput=renderAnimals;animalFilter.onchange=renderAnimals;
+animalForm.onsubmit=e=>{e.preventDefault();let id=animalId.value,old=db.animals.find(a=>a.id===id);let a={id:id||uid(),no:animalNo.value.trim(),type:animalType.value,sex:animalSex.value,dob:animalDob.value,qty:+animalQty.value,status:animalStatus.value,notes:animalNotes.value.trim()};if(!a.qty||a.qty<1)return alert('أدخل عددًا صحيحًا');if(old)Object.assign(old,a);else db.animals.push(a);animalForm.reset();animalId.value='';animalQty.value=1;animalStatus.value='موجود';animalFormTitle.textContent='إضافة حيوان / مجموعة';save()};
+function editAnimal(id){let a=db.animals.find(x=>x.id===id);animalId.value=a.id;animalNo.value=a.no||'';animalType.value=a.type;animalSex.value=a.sex;animalDob.value=a.dob||'';animalQty.value=a.qty;animalStatus.value=a.status;animalNotes.value=a.notes||'';animalFormTitle.textContent='تعديل سجل الحيوان';document.querySelector('[data-page=animals]').click();scrollTo(0,0)}
+function deleteAnimal(id){if(confirm('حذف السجل نهائيًا؟')){db.animals=db.animals.filter(a=>a.id!==id);save()}}
+moveForm.onsubmit=e=>{e.preventDefault();let action=moveAction.value,type=moveType.value,qty=Math.floor(+moveQty.value),sex=moveSex.value,price=+movePrice.value||0;
+if(!qty||qty<1)return alert('العدد غير صحيح');if(price<0)return alert('السعر غير صحيح');
+let add=['شراء','ولادة','تعديل رصيد بالزيادة'].includes(action);
+let match=a=>a.type===type&&(sex==='غير محدد'||a.sex===sex);
+if(!add){let have=count(current(),match);if(have<qty&&!confirm(`المسجل حاليًا ${have} فقط. هل تريد تسجيل الحركة رغم ذلك؟`))return}
+let m={id:uid(),date:moveDate.value,action,type,sex,qty,price,total:qty*price,birthDate:birthDate.value,notes:moveNotes.value.trim(),effects:[]};
+if(add){let na={id:uid(),no:'',type,sex,dob:action==='ولادة'?(birthDate.value||moveDate.value):'',qty,status:'موجود',notes:action==='ولادة'?'مواليد جديدة':`إضافة من حركة ${action}`};db.animals.push(na);m.effects.push({id:na.id,created:true,q:qty})}
+else{let left=qty;for(let a of current().filter(match)){let take=Math.min(left,a.qty);if(take<=0)continue;a.qty-=take;left-=take;let zero=a.qty===0;if(zero)a.status=action==='بيع'?'مباع':action==='نفوق'?'نافق':'مستبعد';m.effects.push({id:a.id,take,zeroed:zero});if(left===0)break}}
+db.moves.push(m);moveForm.reset();moveDate.value=today();moveQty.value=1;movePrice.value=0;save()};
+function renderMoves(){movesBody.innerHTML=[...db.moves].reverse().map(m=>`<tr><td>${esc(m.date)}</td><td>${esc(m.action)}</td><td>${esc(m.type)}</td><td>${esc(m.sex)}</td><td>${m.qty}</td><td>${Number(m.total||0).toFixed(2)}</td><td>${esc(m.notes||'')}</td><td><button class="danger" onclick="deleteMove('${m.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="8" class="empty">لا توجد حركات</td></tr>'}
+function deleteMove(id){let m=db.moves.find(x=>x.id===id);if(!m)return;
+if(!Array.isArray(m.effects)){if(confirm('هذه حركة قديمة لا يمكن عكس أثرها تلقائيًا. سيُحذف السجل فقط دون تغيير أعداد القطيع (عدّل الأعداد من سجل الحيوانات). متابعة؟')){db.moves=db.moves.filter(x=>x.id!==id);save()}return}
+if(!confirm('حذف الحركة وعكس أثرها على أعداد القطيع؟'))return;
+m.effects.forEach(f=>{let a=db.animals.find(x=>x.id===f.id);if(!a)return;if(f.created){a.qty=Number(a.qty)-f.q;if(a.qty<=0)db.animals=db.animals.filter(x=>x.id!==a.id)}else{a.qty=Number(a.qty)+f.take;if(f.zeroed)a.status='موجود'}});
+db.moves=db.moves.filter(x=>x.id!==id);save()}
+expenseForm.onsubmit=e=>{e.preventDefault();let amount=+expAmount.value;if(!(amount>=0))return alert('المبلغ غير صحيح');
+let qty=+expQty.value||0,unit=expUnit.value.trim(),cat=expCategory.value,date=expDate.value,desc=expDesc.value.trim();
+let toStock=expStock.value==='1';
+if(toStock){if(!db.feedTypes.includes(cat))return alert('الإضافة للمخزون متاحة لأصناف العلف فقط');if(!(qty>0)||!unit)return alert('اكتب الكمية والوحدة لإضافتها للمخزون')}
+db.expenses.push({id:uid(),date,category:cat,desc,qty,unit,amount});
+if(toStock)db.stockMoves.push({id:uid(),action:'شراء',category:cat,qty,unit,date,notes:'من فاتورة: '+desc});
+expenseForm.reset();expDate.value=today();expQty.value=1;save()};
+function renderExpenses(){expensesBody.innerHTML=[...db.expenses].sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${esc(x.date)}</td><td>${esc(x.category)}</td><td>${esc(x.desc)}</td><td>${x.qty||''} ${esc(x.unit||'')}</td><td>${Number(x.amount).toFixed(2)}</td><td>${financial(x.date).label}</td><td><button class="danger" onclick="deleteExpense('${x.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="7" class="empty">لا توجد مصروفات</td></tr>';let map={};db.expenses.forEach(x=>{let c=financial(x.date);map[c.label]??={...c,total:0};map[c.label].total+=+x.amount});cyclesBody.innerHTML=Object.values(map).sort((a,b)=>b.start.localeCompare(a.start)).map(c=>`<tr><td>${c.label}</td><td>${c.start}</td><td>${c.end}</td><td>${c.total.toFixed(2)} ر.س</td></tr>`).join('')||'<tr><td colspan="4" class="empty">لا توجد بيانات</td></tr>'}
+function deleteExpense(id){if(confirm('حذف المصروف؟')){db.expenses=db.expenses.filter(x=>x.id!==id);save()}}
+function refreshFeedTypes(){let opts=db.feedTypes.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');stockCategory.innerHTML=opts;expCategory.innerHTML=opts+`<option>أدوية وفيتامينات</option><option>مستلزمات وأخرى</option>`;feedTypesBody.innerHTML=db.feedTypes.map((x,i)=>`<tr><td>${esc(x)}</td><td class="actions"><button type="button" class="secondary" onclick="renameFeedType(${i})">تعديل الاسم</button><button type="button" class="danger" onclick="removeFeedType(${i})">حذف</button></td></tr>`).join('')}
+addFeedTypeBtn.onclick=()=>{let name=newFeedType.value.trim();if(!name)return alert('اكتب اسم العلف');if(db.feedTypes.some(x=>x.toLowerCase()===name.toLowerCase()))return alert('هذا الصنف موجود مسبقًا');db.feedTypes.push(name);newFeedType.value='';save()};
+function renameFeedType(i){let old=db.feedTypes[i],name=prompt('اكتب الاسم الجديد للصنف:',old);if(name===null)return;name=name.trim();if(!name)return alert('الاسم لا يمكن أن يكون فارغًا');if(db.feedTypes.some((x,j)=>j!==i&&x.toLowerCase()===name.toLowerCase()))return alert('هذا الاسم مستخدم لصنف آخر');db.feedTypes[i]=name;if(db.rations[old]){db.rations[name]=db.rations[old];delete db.rations[old]}db.stockMoves.forEach(x=>{if(x.category===old)x.category=name});db.expenses.forEach(x=>{if(x.category===old)x.category=name});save()}
+function removeFeedType(i){let name=db.feedTypes[i];if(!confirm(`حذف الصنف "${name}" من قائمة الاختيار؟ السجلات السابقة ستبقى محفوظة.`))return;db.feedTypes.splice(i,1);save()}
+stockForm.onsubmit=e=>{e.preventDefault();let action=stockAction.value,category=stockCategory.value,qty=Number(stockQty.value),unit=stockUnit.value.trim();if(!(qty>0)||!unit)return alert('أدخل كمية ووحدة صحيحتين');let key=x=>x.category===category&&String(x.unit||'').trim().toLowerCase()===unit.toLowerCase();let balance=db.stockMoves.filter(key).reduce((sum,x)=>sum+(x.action==='شراء'?Number(x.qty):-Number(x.qty)),0);if(action==='صرف'&&qty>balance+1e-9)return alert(`الكمية غير كافية. المتوفر حاليًا: ${balance} ${unit}`);db.stockMoves.push({id:(crypto.randomUUID?uid():String(Date.now())+Math.random()),action,category,qty,unit,date:stockDate.value,notes:stockNotes.value.trim()});stockForm.reset();stockDate.value=today();save()};
+function renderStock(){refreshFeedTypes();let groups={};db.stockMoves.forEach(x=>{let k=x.category+'|'+String(x.unit||'').trim();groups[k]??={category:x.category,unit:x.unit,in:0,out:0};if(x.action==='شراء')groups[k].in+=Number(x.qty);else groups[k].out+=Number(x.qty)});stockBalanceBody.innerHTML=Object.values(groups).sort((a,b)=>a.category.localeCompare(b.category,'ar')).map(x=>`<tr><td>${esc(x.category)}</td><td>${esc(x.unit)}</td><td>${x.in.toFixed(2)}</td><td>${x.out.toFixed(2)}</td><td><strong>${(x.in-x.out).toFixed(2)}</strong></td></tr>`).join('')||'<tr><td colspan="5" class="empty">لم تُسجل حركات مخزون بعد</td></tr>';stockMovesBody.innerHTML=[...db.stockMoves].sort((a,b)=>b.date.localeCompare(a.date)).map(x=>`<tr><td>${esc(x.date)}</td><td>${x.action==='شراء'?'وارد / شراء':'منصرف / استهلاك'}</td><td>${esc(x.category)}</td><td>${Number(x.qty).toFixed(2)}</td><td>${esc(x.unit)}</td><td>${esc(x.notes||'—')}</td></tr>`).join('')||'<tr><td colspan="6" class="empty">لا توجد حركات مخزون</td></tr>'}
+exportBtn.onclick=async()=>{db.lastBackup=today();persist();let ok=await saveFile(JSON.stringify(db,null,2),'abu-hatim-backup-'+today()+'.json','application/json');if(ok!==false)render()};
+let skipLock=0;
+async function saveFile(data,name,type){
+ skipLock=Date.now()+120000;
+ const P=window.Capacitor&&window.Capacitor.Plugins;
+ if(P&&P.Filesystem&&P.Share){try{const r=await P.Filesystem.writeFile({path:name,data,directory:'CACHE',encoding:'utf8'});await P.Share.share({title:name,url:r.uri,dialogTitle:'احفظ أو شارك الملف'});return true}catch(e){if(/cancel/i.test(String((e&&e.message)||e)))return false;alert('تعذّر فتح قائمة الحفظ: '+((e&&e.message)||e))}}
+ else if(navigator.canShare&&window.File){try{const f=new File([data],name,{type});if(navigator.canShare({files:[f]})){await navigator.share({files:[f],title:name});return true}}catch(e){if(e&&e.name==='AbortError')return false}}
+ download(data,name,type);return true}
+function download(data,name,type){let a=document.createElement('a'),u=URL.createObjectURL(new Blob([data],{type}));a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)}
+importBtn.onclick=()=>{skipLock=Date.now()+120000;importFile.click()};importFile.onchange=e=>{let f=e.target.files[0];if(!f)return;let r=new FileReader();r.onload=()=>{try{let x=JSON.parse(r.result);if(!Array.isArray(x.animals)||!Array.isArray(x.moves)||!Array.isArray(x.expenses))throw 0;if(confirm('سيتم استبدال البيانات الحالية بالنسخة المختارة. متابعة؟')){db=x;db.health=Array.isArray(x.health)?x.health:[];db.rations=(x.rations&&typeof x.rations==='object'&&!Array.isArray(x.rations))?x.rations:{};db.stockMoves=Array.isArray(db.stockMoves)?db.stockMoves:[];
+db.feedTypes=Array.isArray(db.feedTypes)&&db.feedTypes.length?db.feedTypes:['شعير فلكس','وافي تربية','مكعبات روابي 21','برسيم','قصب','رودس','أعلاف أخرى'];save();alert('تم الاسترجاع بنجاح')}}catch(_){alert('ملف النسخة الاحتياطية غير صالح')}};r.readAsText(f);e.target.value=''};
+csvBtn.onclick=()=>{let rows=[['الرقم','النوع','الجنس','تاريخ الميلاد','العدد','الحالة','ملاحظات'],...db.animals.map(a=>[a.no,a.type,a.sex,a.dob,a.qty,a.status,a.notes])];let csv='\uFEFF'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');saveFile(csv,'abu-hatim-animals.csv','text/csv;charset=utf-8')};
+
+/* ===== v11: finance ===== */
+function sumM(act){return db.moves.filter(m=>m.action===act).reduce((s,m)=>s+Number(m.total||0),0)}
+function renderFinance(){let sales=sumM('بيع'),buy=sumM('شراء'),exp=db.expenses.reduce((s,e)=>s+Number(e.amount||0),0),net=sales-buy-exp;
+let c=(t,v,cls='')=>`<div class="card"><small>${t}</small><div class="num ${cls}">${v.toFixed(2)}</div></div>`;
+finGrid.innerHTML=c('إيرادات المبيعات (ر.س)',sales)+c('مشتريات الحيوانات (ر.س)',buy)+c('مصروفات الأعلاف وغيرها (ر.س)',exp)+c('صافي الربح / الخسارة (ر.س)',net,net>=0?'pos':'neg')}
+/* ===== v11: feed calculator ===== */
+function skey(u){return String(u||'').trim().toLowerCase()}
+function rat(f){return db.rations[f]||{}}
+function herdFor(scope){let l=current().filter(a=>!scope||a.type===scope);return{adult:count(l,a=>!isYoungA(a)),young:count(l,isYoungA)}}
+function feedCalc(f,scope){let r=rat(f),h=herdFor(scope),unit=String(r.unit||'').trim();
+let kgu=Number(r.kg)>0?Number(r.kg):(/^(كيلو|كجم|كغ|كغم|kg)$/i.test(unit)?1:0);
+let dailyKg=(Number(r.adult)||0)*h.adult+(Number(r.young)||0)*h.young;
+let dailyUnits=kgu>0?dailyKg/kgu:0;
+let left=db.stockMoves.filter(x=>x.category===f&&(!unit||skey(x.unit)===skey(unit))).reduce((s,x)=>s+(x.action==='شراء'?1:-1)*Number(x.qty),0);
+let days=(dailyUnits>0)?left/dailyUnits:null;
+let monthCost=(Number(r.price)>0&&dailyUnits>0)?dailyUnits*30*Number(r.price):0;
+return{dailyKg,dailyUnits,left,days,monthCost,unit,kgu,h}}
+function setRation(i,field,val){let f=db.feedTypes[i];db.rations[f]=db.rations[f]||{};db.rations[f][field]=field==='unit'?String(val).trim():(val===''?'':Number(val));persist();renderFeedResults();renderAlerts()}
+function renderFeed(){let sc=feedScope.value,h=herdFor(sc);
+feedHerd.innerHTML=`<div class="card"><small>كبار</small><div class="num">${h.adult}</div></div><div class="card"><small>صغار (أقل من سنة)</small><div class="num">${h.young}</div></div>`;
+rationBody.innerHTML=db.feedTypes.map((f,i)=>{let r=rat(f);let inp=(fld,step,w)=>`<input class="inl" type="number" min="0" step="${step}" value="${r[fld]===undefined||r[fld]===''?'':r[fld]}" onchange="setRation(${i},'${fld}',this.value)">`;
+return `<tr><td>${esc(f)}</td><td>${inp('adult','0.01')}</td><td>${inp('young','0.01')}</td><td><input class="inl" value="${esc(r.unit||'')}" placeholder="كيس" onchange="setRation(${i},'unit',this.value)"></td><td>${inp('kg','0.1')}</td><td>${inp('price','0.01')}</td></tr>`}).join('')||'<tr><td colspan="6" class="empty">لا توجد أصناف</td></tr>';
+renderFeedResults()}
+function renderFeedResults(){let sc=feedScope.value,tot=0,rows='';
+db.feedTypes.forEach(f=>{let r=rat(f);if(!(Number(r.adult)>0||Number(r.young)>0))return;let c=feedCalc(f,sc);tot+=c.monthCost;
+let dayTxt=c.days===null?'—':(c.days<=0?'<span class="tag low">منتهي</span>':`<span class="tag ${c.days<=7?'low':'ok'}">${Math.floor(c.days)} يوم</span>`);
+rows+=`<tr><td>${esc(f)}</td><td>${c.dailyKg.toFixed(1)}</td><td>${(c.dailyKg*7).toFixed(1)}</td><td>${(c.dailyKg*30).toFixed(1)}</td><td>${c.left.toFixed(2)} ${esc(c.unit)}</td><td>${dayTxt}</td><td>${c.monthCost?c.monthCost.toFixed(2):'—'}</td></tr>`});
+feedResBody.innerHTML=rows||'<tr><td colspan="7" class="empty">أدخل مقررات العلف في الجدول أعلاه لتظهر الحسابات</td></tr>';
+feedTotal.innerHTML=tot?`إجمالي التكلفة الشهرية التقديرية: <strong>${tot.toFixed(2)} ر.س</strong>`:'<span class="muted">أدخل سعر الوحدة ووزنها لحساب التكلفة.</span>';
+}
+feedScope.onchange=renderFeed;
+feedDailyBtn.onclick=()=>{let sc=feedScope.value,d=today(),done=[],skip=[];
+db.feedTypes.forEach(f=>{let r=rat(f);let c=feedCalc(f,sc);if(!(c.dailyUnits>0)||!c.unit)return;
+if(db.stockMoves.some(x=>x.category===f&&x.date===d&&x.auto)&&!confirm(`سبق تسجيل صرف «${f}» اليوم. تسجيله مرة أخرى؟`))return;
+let q=Math.round(c.dailyUnits*100)/100;if(q>c.left+1e-9){skip.push(f);return}
+db.stockMoves.push({id:uid(),action:'صرف',category:f,qty:q,unit:c.unit,date:d,notes:'صرف يومي تلقائي',auto:true});done.push(`${f}: ${q} ${c.unit}`)});
+if(!done.length&&!skip.length)return alert('حدّد المقرر والوحدة ووزن الوحدة أولًا');
+save();alert((done.length?'تم تسجيل صرف اليوم:\n'+done.join('\n'):'')+(skip.length?'\n\nرصيد غير كافٍ لـ: '+skip.join('، '):''))};
+function renderAlerts(){let h='';
+let low=[];db.feedTypes.forEach(f=>{let r=rat(f);if(!(Number(r.adult)>0||Number(r.young)>0))return;let c=feedCalc(f,'');if(c.days!==null&&c.days<=7)low.push(`${f} (${c.days<=0?'منتهي':Math.floor(c.days)+' يوم'})`)});
+if(low.length)h+=`<div class="alert">⚠ مخزون العلف يقارب النفاد: ${esc(low.join('، '))}</div>`;
+let due=dueList(7);if(due.length){let names=due.slice(0,3).map(r=>r.name+' ('+dueTxt(r.next)+')').join('، ');h+=`<div class="alert">🩺 ${due.length} موعد صحي قريب أو متأخر: ${esc(names)}${due.length>3?' ...':''}</div>`}
+let has=db.animals.length||db.moves.length||db.expenses.length;
+if(has){let last=db.lastBackup;let dd=last?Math.floor((Date.now()-new Date(last+'T12:00:00'))/864e5):null;if(dd===null||dd>=7)h+=`<div class="alert info">💾 ${dd===null?'لم تأخذ نسخة احتياطية بعد':'آخر نسخة احتياطية قبل '+dd+' يومًا'}. من تبويب «التقارير والنسخ» صدّر نسخة لحماية بياناتك.</div>`}
+alerts.innerHTML=h}
+
+/* ===== v12: health & vaccinations ===== */
+hDate.value=today();
+function dayDiff(d){return Math.round((new Date(d+'T12:00:00')-new Date(today()+'T12:00:00'))/864e5)}
+function dueTxt(d){let n=dayDiff(d);return n<0?`متأخر ${-n} يوم`:n===0?'اليوم':`بعد ${n} يوم`}
+function dueList(days){return db.health.filter(r=>r.next&&!r.nextDone&&dayDiff(r.next)<=days).sort((a,b)=>a.next<b.next?-1:a.next>b.next?1:0)}
+function tgt(r){return (r.scope||'كل القطيع')+(r.ear?' — '+r.ear:'')}
+healthForm.onsubmit=e=>{e.preventDefault();let r={id:uid(),date:hDate.value,kind:hKind.value,scope:hScope.value,ear:hEar.value.trim(),name:hName.value.trim(),cost:+hCost.value||0,next:hNext.value,notes:hNotes.value.trim(),nextDone:false};
+if(!r.date||!r.name)return alert('أكمل التاريخ والاسم');if(r.next&&r.next<r.date)return alert('الموعد القادم قبل تاريخ التنفيذ');if(r.cost<0)return alert('التكلفة غير صحيحة');
+if(r.cost>0){let ex={id:uid(),date:r.date,category:'أدوية وفيتامينات',desc:r.kind+': '+r.name,qty:1,unit:'',amount:r.cost};db.expenses.push(ex);r.expId=ex.id}
+db.health.push(r);healthForm.reset();hDate.value=today();hCost.value=0;save()};
+function renderHealth(){
+remBody.innerHTML=dueList(30).map(r=>{let n=dayDiff(r.next);let cls=n<0?'low':n<=7?'warn':'ok';return `<tr><td>${esc(r.next)}<br><span class="tag ${cls}">${dueTxt(r.next)}</span></td><td>${esc(r.kind)}</td><td>${esc(r.name)}</td><td>${esc(tgt(r))}</td><td class="actions"><button class="secondary" onclick="doneRem('${r.id}')">تم التنفيذ</button></td></tr>`}).join('')||'<tr><td colspan="5" class="empty">لا مواعيد خلال 30 يومًا</td></tr>';
+healthBody.innerHTML=[...db.health].sort((a,b)=>a.date<b.date?1:-1).map(r=>`<tr><td>${esc(r.date)}</td><td>${esc(r.kind)}</td><td>${esc(r.name)}${r.notes?'<br><span class="muted">'+esc(r.notes)+'</span>':''}</td><td>${esc(tgt(r))}</td><td>${r.cost?Number(r.cost).toFixed(2):'—'}</td><td>${r.next?esc(r.next)+(r.nextDone?' ✓':''):'—'}</td><td><button class="danger" onclick="delHealth('${r.id}')">حذف</button></td></tr>`).join('')||'<tr><td colspan="7" class="empty">لا توجد سجلات صحية</td></tr>'}
+function doneRem(id){let r=db.health.find(x=>x.id===id);if(!r)return;r.nextDone=true;save();hKind.value=r.kind;hScope.value=r.scope||'';hEar.value=r.ear||'';hName.value=r.name;hDate.value=today();hNext.value='';healthForm.scrollIntoView({behavior:'smooth'});alert('تم إغلاق التذكير. عبّئنا لك النموذج لتسجيل التنفيذ الجديد وتحديد الموعد القادم إن وجد، ثم اضغط حفظ.')}
+function delHealth(id){let r=db.health.find(x=>x.id===id);if(!r||!confirm('حذف السجل الصحي'+(r.expId?' والمصروف المرتبط به':'')+'؟'))return;if(r.expId)db.expenses=db.expenses.filter(x=>x.id!==r.expId);db.health=db.health.filter(x=>x.id!==id);save()}
+/* ===== v12: PIN lock ===== */
+const PINKEY='abu_hatim_pin';
+async function hashPin(p){const t='abu-hatim|'+p;try{const b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(t));return Array.from(new Uint8Array(b)).map(x=>x.toString(16).padStart(2,'0')).join('')}catch(e){let h=5381;for(const c of t)h=((h<<5)+h+c.charCodeAt(0))|0;return 'f'+h}}
+function hasPin(){try{return !!localStorage.getItem(PINKEY)}catch(e){return false}}
+function pinStatus(){pinState.textContent=hasPin()?'القفل مفعّل ✓':'القفل غير مفعّل'}
+function showLock(){if(!hasPin())return;lockScreen.style.display='flex';lockInput.value='';lockMsg.textContent=''}
+lockBtn.onclick=async()=>{if(await hashPin(lockInput.value)===localStorage.getItem(PINKEY)){lockScreen.style.display='none';lockInput.value=''}else{lockMsg.textContent='الرقم غير صحيح';lockInput.value=''}};
+lockInput.onkeydown=e=>{if(e.key==='Enter')lockBtn.onclick()};
+document.addEventListener('visibilitychange',()=>{if(document.hidden&&Date.now()>skipLock)showLock()});
+pinSet.onclick=async()=>{let p=pinNew.value.trim();if(!/^\d{4,8}$/.test(p))return alert('اكتب من 4 إلى 8 أرقام');if(hasPin()&&!confirm('سيتم تغيير الرقم السري. متابعة؟'))return;localStorage.setItem(PINKEY,await hashPin(p));pinNew.value='';pinStatus();alert('تم تفعيل القفل. سيُطلب الرقم عند كل فتح للتطبيق.')};
+pinOff.onclick=async()=>{if(!hasPin())return alert('القفل غير مفعّل');let p=pinNew.value.trim();if(await hashPin(p)!==localStorage.getItem(PINKEY))return alert('اكتب الرقم السري الحالي في الخانة ثم اضغط إلغاء القفل');localStorage.removeItem(PINKEY);pinNew.value='';pinStatus()};
+pinStatus();showLock();
+render();
 </script></body></html>
